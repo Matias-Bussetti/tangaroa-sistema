@@ -20,3 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rutas Para Usuarios Autenticados
+Route::group(['middleware' => 'auth'], function () {
+
+  //Rutas de Administración y configuración
+  Route::prefix('admin/settings')->group(function(){
+
+    Route::get('/listPacks','PacksController@listPacks');
+
+  });
+
+});
