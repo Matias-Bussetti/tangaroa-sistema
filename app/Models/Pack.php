@@ -4,9 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Packs extends Model
+class Pack extends Model
 {
-    protected $fillable = ['name','description','position','price','price_offer','date_offer','image'];
+    protected $fillable = [
+        'name',
+        'description',
+        'position',
+        'price',
+        'price_offer',
+        'date_offer',
+        'image'
+    ];
 
     //Relaciones
 

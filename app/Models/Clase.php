@@ -15,6 +15,6 @@ class Clases extends Model
 
     public function foreign()
     {
-      return $this->belongsTo('App\Models\Semanas','foreign_id');
+      return $this->belongsTo('App\Models\Semana','foreign_id');
     }
 }

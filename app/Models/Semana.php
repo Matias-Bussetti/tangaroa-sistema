@@ -14,14 +14,14 @@ class Semanas extends Model
 
     public function pack()
     {
-      return $this->belongsTo('App\Models\Packs', 'pack_id');
+      return $this->belongsTo('App\Models\Pack', 'pack_id');
     }
 
     //me to many
 
     public function clases()
     {
-      return $this->hasMany('App\Models\Clases');
+      return $this->hasMany('App\Models\Clase');
     }
 
 }

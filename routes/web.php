@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -27,8 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
   //Rutas de Administración y configuración
   Route::prefix('admin/settings')->group(function(){
 
-    Route::get('/listPacks','PacksController@listPacks');
+    Route::get('/create-pack','PackController@create');
 
+  });
+
+  Route::get('/get-personal/token',function(){
+    return [ 'data' => Auth::user()->api_token];
   });
 
 });

@@ -64,6 +64,12 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'pack' => [
+            'driver' => 'local',
+            'root' => storage_path('../public/img/pack'),
+            'url' => env('APP_URL').'/img/pack',
+        ],
+
     ],
 
     /*
