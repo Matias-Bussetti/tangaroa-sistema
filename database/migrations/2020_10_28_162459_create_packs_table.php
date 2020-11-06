@@ -21,7 +21,8 @@ class CreatePacksTable extends Migration
             $table->double('price', 8, 2);
             $table->double('price_offer', 8, 2)->nullable();
             $table->date('date_offer')->nullable();
-            $table->text('image');
+            $table->text('image_vertical');
+            $table->text('image_horizontal');
             $table->timestamps();
         });
     }

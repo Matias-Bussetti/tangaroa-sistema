@@ -48,16 +48,21 @@ class PackController extends Controller
       'description.required' => 'Escriba un descripción',
       'price.required' => 'Ingrese un Precio',
       'price.numeric' => 'El Precio debe de ser numerico',
-      'image.required' => 'Elija una Imagen',
-      'image.file' => 'Elija una Imagen que sea un archivo',
-      'image.max' => 'Elija una Imagen que menor de 20 mb',
-      'image.mimes' => 'Elija una Imagen con la extención: jpeg o png',
+      'image_vertical.required' => 'Elija una Imagen',
+      'image_vertical.file' => 'Elija una Imagen que sea un archivo',
+      'image_vertical.max' => 'Elija una Imagen que menor de 20 mb',
+      'image_vertical.mimes' => 'Elija una Imagen con la extención: jpeg o png',
+      'image_horizontal.required' => 'Elija una Imagen',
+      'image_horizontal.file' => 'Elija una Imagen que sea un archivo',
+      'image_horizontal.max' => 'Elija una Imagen que menor de 20 mb',
+      'image_horizontal.mimes' => 'Elija una Imagen con la extención: jpeg o png',
       ];
       $validator = Validator::make($request->all(), [
       'name' => 'required',
       'description' => 'required',
       'price' => 'required|numeric',
-      'image' => 'required|file|max:20000|mimes:jpeg,png',
+      'image_vertical' => 'required|file|max:20000|mimes:jpeg,png',
+      'image_horizontal' => 'required|file|max:20000|mimes:jpeg,png',
       ], $messages);
 
       if ($validator->fails()) {
@@ -67,12 +72,20 @@ class PackController extends Controller
         return ['data' => ['errors' => $errors]];
       }
 
-      if (request()->hasFile('image'))//---> Valida que la imagen sea un archivo
+      if (request()->hasFile('image_vertical'))//---> Valida que la imagen sea un archivo
       {
-        $file = $request->file('image');//---> asignamos a $file el valor de lo que traemos del request como imagen
+        $file = $request->file('image_vertical');//---> asignamos a $file el valor de lo que traemos del request como imagen
         $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
-        $file_name = time()."-".$request->input('name').".".$extension;//---> armamos el nombre del archivo
-        Storage::disk('pack')->put($file_name, file_get_contents($file));//---> guardamos el archivo en el storage
+        $file_name_vertical = time()."-".$request->input('name')."-vertical.".$extension;//---> armamos el nombre del archivo
+        Storage::disk('pack')->put($file_name_vertical, file_get_contents($file));//---> guardamos el archivo en el storage
+      }
+
+      if (request()->hasFile('image_horizontal'))//---> Valida que la imagen sea un archivo
+      {
+        $file = $request->file('image_horizontal');//---> asignamos a $file el valor de lo que traemos del request como imagen
+        $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
+        $file_name_horizontal = time()."-".$request->input('name')."-horizontal.".$extension;//---> armamos el nombre del archivo
+        Storage::disk('pack')->put($file_name_horizontal, file_get_contents($file));//---> guardamos el archivo en el storage
       }
       
       
@@ -83,7 +96,8 @@ class PackController extends Controller
       $pack->description = $request->input('description');
       $pack->position = $request->input('position');
       $pack->price = $request->input('price');
-      $pack->image = strval("/img/pack/".$file_name);
+      $pack->image_vertical = strval("/img/pack/".$file_name_vertical);
+      $pack->image_horizontal = strval("/img/pack/".$file_name_horizontal);
 
       if($pack->save()) {
           return new PackResource($pack);
@@ -98,9 +112,9 @@ class PackController extends Controller
      */
     public function show($id)
     {
-      $article = Pack::findorFail($id);
+      $pack = Pack::findorFail($id);
 
-      return new PackResource($article);
+      return new PackResource($pack);
     }
 
     /**
@@ -123,17 +137,62 @@ class PackController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $pack = Pack::findorFail($id);
+
+      $messages = [
+      'name.required' => 'Ingrese un Nombre',
+      'description.required' => 'Escriba un descripción',
+      'price.required' => 'Ingrese un Precio',
+      'price.numeric' => 'El Precio debe de ser numerico',
+      'image_vertical.file' => 'Elija una Imagen que sea un archivo',
+      'image_vertical.max' => 'Elija una Imagen que menor de 20 mb',
+      'image_vertical.mimes' => 'Elija una Imagen con la extención: jpeg o png',
+      'image_horizontal.file' => 'Elija una Imagen que sea un archivo',
+      'image_horizontal.max' => 'Elija una Imagen que menor de 20 mb',
+      'image_horizontal.mimes' => 'Elija una Imagen con la extención: jpeg o png',
+      ];
+
+      $validator = Validator::make($request->all(), [
+      'name' => 'required',
+      'description' => 'required',
+      'price' => 'required|numeric',
+      'image_vertical' => 'file|max:20000|mimes:jpeg,png',
+      'image_horizontal' => 'file|max:20000|mimes:jpeg,png',
+      ], $messages);
+
+      if ($validator->fails()) {
+
+        $errors = $validator->errors();
+
+        return ['data' => ['errors' => $errors]];
+      }
+
+      $pack = Pack::findOrFail($id);
+
+      if (request()->hasFile('image_vertical'))//---> Valida que la imagen sea un archivo
+      {
+        $file = $request->file('image_vertical');//---> asignamos a $file el valor de lo que traemos del request como imagen
+        $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
+        $file_name_vertical = $pack->image_vertical;
+        Storage::disk('pack')->put($file_name_vertical, file_get_contents($file));//---> guardamos el archivo en el storage
+      }
+
+      if (request()->hasFile('image_horizontal'))//---> Valida que la imagen sea un archivo
+      {
+        $file = $request->file('image_horizontal');//---> asignamos a $file el valor de lo que traemos del request como imagen
+        $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
+        $file_name_horizontal = $pack->image_horizontal;//---> armamos el nombre del archivo
+        Storage::disk('pack')->put($file_name_horizontal, file_get_contents($file));//---> guardamos el archivo en el storage
+      }
 
       $pack->name = $request->input('name');
       $pack->description = $request->input('description');
       $pack->position = $request->input('position');
       $pack->price = $request->input('price');
-      $pack->image = $request->input('image');
 
       if($pack->save()) {
-          return new PackResource($article);
+          return new PackResource($pack);
       }
+
     }
 
     /**
@@ -144,10 +203,12 @@ class PackController extends Controller
      */
     public function destroy($id)
     {
+
       $pack = Pack::findorFail($id);
 
       if($pack->delete()) {
-          return new PackResource($article);
+          return new PackResource($pack);
       }
+
     }
 }

@@ -4,7 +4,7 @@
 
             <h3>Agregar Paquete:</h3>
 
-            <form @submit.prevent="addPack" class="col s12 mb-2">
+            <form @submit.prevent="editPack" class="col s12 mb-2">
 
                 <div class="row">
                     <div class="input-field col s12">
@@ -52,7 +52,7 @@
                     <div class="btn col s12 mb-4">
                         <span>Abrir</span>
                         <input class="form-control" type="file" name="image_vertical" id="image_file_vertical"
-                            @change="changeImageVertical" accept="image/png, image/jpeg">
+                            @change="changeimage_vertical" accept="image/png, image/jpeg">
                         <div class="file-path-wrapper" hidden>
                             <input class="file-path validate" type="text">
                         </div>
@@ -79,7 +79,7 @@
                     <div class="btn col s12 mb-4">
                         <span>Abrir</span>
                         <input class="form-control" type="file" name="image_horizontal" id="image_file_horizontal"
-                            @change="changeImageHorizontal" accept="image/png, image/jpeg">
+                            @change="changeimage_horizontal" accept="image/png, image/jpeg">
                         <div class="file-path-wrapper" hidden>
                             <input class="file-path validate" type="text">
                         </div>
@@ -114,6 +114,7 @@
     export default {
         props: {
             csrfToken: String,
+            packId: Number,
         },
         data() {
             return {
@@ -127,8 +128,8 @@
                     name: null,
                     description: null,
                     price: null,
-                    imageVertical: '',
-                    imageHorizontal: '',
+                    image_vertical: '',
+                    image_horizontal: '',
                 },
                 token: null,
                 image_file_vertical: null,
@@ -137,21 +138,47 @@
         },
 
         created() {
-
-        },
-
-        mounted() {
-            this.$refs.imgVertical.bind({
-                url: '/img/page/300x800.png',
-            });
-            this.$refs.imgHorizontal.bind({
-                url: '/img/page/1200x200.png',
-            });
+            console.log(this.packId);
+            this.fetchPack();
         },
 
         methods: {
-            async addPack() {
 
+            async fetchPack() {
+
+                await fetch('/get-personal/token')
+                    .then(res => res.json())
+                    .then(res => {
+                        this.token = res.data;
+                    })
+                    .catch(err => console.log(err));
+
+                let vm = this;
+
+                await fetch(`/api/pack/${vm.packId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${this.token}`
+                    }
+                }).then(res => res.json()).then(res => {
+
+                    this.pack = res.data;
+
+                    console.log(res.data);
+
+                    this.$refs.imgVertical.bind({
+                        url: res.data.image_vertical,
+                    });
+
+                    this.$refs.imgHorizontal.bind({
+                        url: res.data.image_horizontal,
+                    });
+
+                }).catch(err => console.log(err));
+            },
+
+            async editPack() {
+
+                let vm = this;
                 //Recorta las imagenes
                 let options = {
                     format: 'jpeg',
@@ -197,7 +224,7 @@
 
                 const formData = new FormData();
 
-                formData.append('csrf-token', this.csrfToken);
+                //formData.append('csrf-token', );
 
                 if (this.pack.name) {
                     formData.append('name', this.pack.name);
@@ -219,19 +246,14 @@
                     formData.append('image_horizontal', this.image_file_horizontal);
                 }
 
-                await fetch('/get-personal/token')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.token = res.data;
-                        //console.log(res.data);
-                    })
-                    .catch(err => console.log(err));
+                formData.append('_method', 'PUT');
 
-                fetch('/api/pack', {
+                fetch(`/api/pack/${vm.packId}`, {
                     method: 'POST',
                     body: formData,
                     headers: {
-                        "Authorization": `Bearer ${this.token}`
+                        "Authorization": `Bearer ${this.token}`,
+                        "X-CSRF-TOKEN": vm.csrfToken
                     }
                 }).then(res => res.json()).then(res => {
 
@@ -241,49 +263,30 @@
                         this.errors = [];
                     }
 
-                }).catch(err => console.log(err));
+                }).catch(err => console.warn(err));
 
             },
 
-            changeImageVertical(e) {
+            changeimage_vertical(e) {
 
                 const file = e.target.files[0];
-                //this.image_file_vertical = file;
-                this.pack.imageVertical = URL.createObjectURL(file);
-
+                this.pack.image_vertical = URL.createObjectURL(file);
+                this.image_change_vertical = true;
                 this.$refs.imgVertical.bind({
-                    url: this.pack.imageVertical,
+                    url: this.pack.image_vertical,
                 });
 
             },
 
-            changeImageHorizontal(e) {
+            changeimage_horizontal(e) {
 
                 const file = e.target.files[0];
-                //this.image_file_vertical = file;
-                this.pack.imageHorizontal = URL.createObjectURL(file);
-
+                this.pack.image_horizontal = URL.createObjectURL(file);
+                this.image_change_horizontal = true;
                 this.$refs.imgHorizontal.bind({
-                    url: this.pack.imageHorizontal,
+                    url: this.pack.image_horizontal,
                 });
 
-            },
-
-            dataURLtoFile(dataurl, filename) {
-
-                var arr = dataurl.split(','),
-                    mime = arr[0].match(/:(.*?);/)[1],
-                    bstr = atob(arr[1]),
-                    n = bstr.length,
-                    u8arr = new Uint8Array(n);
-
-                while (n--) {
-                    u8arr[n] = bstr.charCodeAt(n);
-                }
-
-                return new File([u8arr], filename, {
-                    type: mime
-                });
             },
 
         },

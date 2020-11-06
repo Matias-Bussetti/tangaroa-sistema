@@ -19,7 +19,8 @@ class Pack extends JsonResource
             'name' => $this->name,
             'description'  => $this->description,
             'price'  => $this->price,
-            'image'  => $this->image,
+            'image_vertical'  => $this->image_vertical,
+            'image_horizontal'  => $this->image_horizontal,
         ];
     }
     

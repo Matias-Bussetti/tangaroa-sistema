@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('packs', require('./components/Packs.vue').default);
 Vue.component('pack', require('./components/Pack.vue').default);
 Vue.component('addpack', require('./components/AddPack.vue').default);
+Vue.component('editpack', require('./components/EditPack.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

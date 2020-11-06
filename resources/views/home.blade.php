@@ -22,10 +22,12 @@
         
         
     </div>
-    <div id="app">
-        <AddPack :csrf-token="{{ json_encode(csrf_token()) }}"></AddPack>
+    
+        <!-- <editPack :pack-id="1" :csrf-token="{{ json_encode(csrf_token()) }}"></editPack> -->
         
         <Packs></Packs>
-    </div>
+
+        
+    
 </div>
 @endsection

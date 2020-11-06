@@ -19,5 +19,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 //Route::apiResource('pack','PacksController')->middleware('auth:api');
-Route::apiResource('pack','PackController')->middleware('auth:api');
+//Route::apiResource('pack','PackController')->middleware('auth:api');
 
+
+Route::group(['middleware' => 'api'], function () {
+//List Articles
+Route::get('pack','PackController@index');// Only one with the s
+
+//List one Article
+Route::get('pack/{id}','PackController@show');
+
+//Create new Article
+Route::post('pack','PackController@store');
+
+//Update Article
+Route::put('pack/{id}','PackController@update');
+
+//Delete Article
+Route::delete('pack/{id}','PackController@destroy');
+
+});
