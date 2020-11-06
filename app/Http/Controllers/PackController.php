@@ -18,7 +18,7 @@ class PackController extends Controller
      */
     public function index()
     {
-      Log::info('USER LOGIN.');
+      //Retorna todos los paquetes
       return PackResource::collection(Pack::all());
     }
 
@@ -41,8 +41,7 @@ class PackController extends Controller
     public function store(Request $request)
     {
 
-      //return $request->all();
-
+      // * Mensajes del Validador
       $messages = [
       'name.required' => 'Ingrese un Nombre',
       'description.required' => 'Escriba un descripción',
@@ -57,6 +56,8 @@ class PackController extends Controller
       'image_horizontal.max' => 'Elija una Imagen que menor de 20 mb',
       'image_horizontal.mimes' => 'Elija una Imagen con la extención: jpeg o png',
       ];
+
+      // * Reglas del validador
       $validator = Validator::make($request->all(), [
       'name' => 'required',
       'description' => 'required',
@@ -65,6 +66,7 @@ class PackController extends Controller
       'image_horizontal' => 'required|file|max:20000|mimes:jpeg,png',
       ], $messages);
 
+      // * Lo que suscede si el validador falla
       if ($validator->fails()) {
 
         $errors = $validator->errors();
@@ -88,7 +90,7 @@ class PackController extends Controller
         Storage::disk('pack')->put($file_name_horizontal, file_get_contents($file));//---> guardamos el archivo en el storage
       }
       
-      
+      // * Ya que paso el validador, se crea un paquete con los datos del request
 
       $pack = new Pack;
 
@@ -112,6 +114,7 @@ class PackController extends Controller
      */
     public function show($id)
     {
+      // * Busca el paquete con el id traido por parametro
       $pack = Pack::findorFail($id);
 
       return new PackResource($pack);
@@ -137,7 +140,7 @@ class PackController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+      // * mensajes del validador 
       $messages = [
       'name.required' => 'Ingrese un Nombre',
       'description.required' => 'Escriba un descripción',
@@ -151,6 +154,8 @@ class PackController extends Controller
       'image_horizontal.mimes' => 'Elija una Imagen con la extención: jpeg o png',
       ];
 
+      // * Reglas del validador, sin las reglas de la imagen
+      
       $validator = Validator::make($request->all(), [
       'name' => 'required',
       'description' => 'required',
@@ -159,12 +164,17 @@ class PackController extends Controller
       'image_horizontal' => 'file|max:20000|mimes:jpeg,png',
       ], $messages);
 
+      // * Lo que sucede si el validador falla
+
       if ($validator->fails()) {
 
         $errors = $validator->errors();
 
         return ['data' => ['errors' => $errors]];
+
       }
+
+      // * Si el validador no falla, busca el paquete con el id que viene por parametro
 
       $pack = Pack::findOrFail($id);
 
