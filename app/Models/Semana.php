@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Semanas extends Model
+class Semana extends Model
 {
     protected $fillable = ['name','color','pack_id'];
 

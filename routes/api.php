@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['middleware' => 'api'], function () {
+
 //List Articles
 Route::get('pack','PackController@index');// Only one with the s
 
@@ -37,5 +38,21 @@ Route::put('pack/{id}','PackController@update');
 
 //Delete Article
 Route::delete('pack/{id}','PackController@destroy');
+
+
+//List Articles
+//Route::get('semana','SemanaController@index');// Only one with the s
+
+//List one Article
+Route::get('semana/{id}','SemanaController@show');
+
+//Create new Article
+Route::post('semana','SemanaController@store');
+
+//Update Article
+Route::put('semana/{id}','SemanaController@update');
+
+//Delete Article
+Route::delete('semana/{id}','SemanaController@destroy');
 
 });

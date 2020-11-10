@@ -22,6 +22,6 @@ class Pack extends Model
 
     public function semanas()
     {
-        return $this->hasMany('App\Models\Semanas');
+        return $this->hasMany('App\Models\Semana');
     }
 }

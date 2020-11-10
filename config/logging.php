@@ -99,6 +99,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'pack' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/pack.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];
