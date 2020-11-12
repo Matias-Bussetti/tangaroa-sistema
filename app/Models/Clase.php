@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clases extends Model
+class Clase extends Model
 {
-    protected $fillable = ['name','description','link','type','type_id'];
+    protected $fillable = ['name','description','link','type','foreign_id'];
 
 
     //Relaciones
 
     //me to One
 
-    public function foreign()
+    public function group()
     {
-      return $this->belongsTo('App\Models\Semana','foreign_id');
+      return $this->morphTo();
     }
 }

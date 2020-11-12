@@ -17,8 +17,8 @@ class CreateClasesTable extends Migration
             $table->id();
             $table->string('name', 30);
             $table->text('description')->nullable();
-            $table->text('link');
-            $table->foreignId('foreign_id');//ALTER TABLE clases AUTO_INCREMENT = 0
+            $table->text('link')->nullable();
+            $table->morphs('group');//ALTER TABLE clases AUTO_INCREMENT = 0
             $table->timestamps();
         });
     }

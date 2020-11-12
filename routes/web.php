@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Log;// ! BORRAR
+use Illuminate\Http\Request;// ! BORRAR
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,13 @@ Route::group(['middleware' => 'auth'], function () {
     return [ 'data' => Auth::user()->api_token];
   });
 
+});
+
+// ! Borrar
+Route::get('/domotica/get', function(){
+  return "get";
+});
+
+Route::post('/domotica/send', function(Request $request){
+  Log::channel('pack')->info($request);
 });

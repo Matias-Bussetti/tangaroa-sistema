@@ -16,7 +16,7 @@ class CreateSemanasTable extends Migration
         Schema::create('semanas', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
-            $table->string('color', 7)->default('#fcd303');
+            $table->string('color', 7)->default('#f0c093');
             $table->foreignId('pack_id');
             $table->timestamps();
         });

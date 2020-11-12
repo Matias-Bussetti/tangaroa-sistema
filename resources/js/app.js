@@ -27,6 +27,8 @@ Vue.component('Editpack', require('./components/Pack/EditPack.vue').default);
 Vue.component('Packsemanas', require('./components/Semana/PackSemanas.vue').default);
 Vue.component('Semana', require('./components/Semana/Semana.vue').default);
 
+Vue.component('Clase', require('./components/Clase/Clase.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

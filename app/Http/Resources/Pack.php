@@ -15,10 +15,10 @@ class Pack extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'    => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
-            'description'  => $this->description,
-            'price'  => $this->price,
+            'description' => $this->description,
+            'price' => $this->price,
             'image_vertical'  => $this->image_vertical,
             'image_horizontal'  => $this->image_horizontal,
         ];

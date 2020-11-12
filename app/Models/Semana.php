@@ -21,7 +21,7 @@ class Semana extends Model
 
     public function clases()
     {
-      return $this->hasMany('App\Models\Clase');
+      return $this->morphMany('App\Models\Clase', 'group');
     }
 
 }

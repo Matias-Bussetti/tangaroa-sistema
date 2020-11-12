@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\Clase as ClaseResource;
+use App\Models\Pack;
+use App\Models\Semana;
+use App\Models\Clase;
 
 class ClaseController extends Controller
 {
@@ -11,9 +19,9 @@ class ClaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($semana_id)
     {
-        //
+        return ClaseResource::collection(Semana::findorFail($semana_id)->clases);
     }
 
     /**
@@ -24,7 +32,18 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $clase = new Clase;
+
+        $semana = Semana::findorFail($request->input('semana_id'));
+        
+        $clase->name = "Clase";
+        $clase->group_id = $semana->id;
+        $clase->group_type = "App\Models\Semana";
+
+        if($clase->save()) {
+            return new ClaseResource($clase);
+        }
     }
 
     /**
@@ -35,7 +54,7 @@ class ClaseController extends Controller
      */
     public function show($id)
     {
-        //
+        return ClaseResource::collection(Clase::findorFail($id));
     }
 
     /**

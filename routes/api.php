@@ -40,9 +40,6 @@ Route::put('pack/{id}','PackController@update');
 Route::delete('pack/{id}','PackController@destroy');
 
 
-//List Articles
-//Route::get('semana','SemanaController@index');// Only one with the s
-
 //List one Article
 Route::get('semana/{id}','SemanaController@show');
 
@@ -54,5 +51,22 @@ Route::put('semana/{id}','SemanaController@update');
 
 //Delete Article
 Route::delete('semana/{id}','SemanaController@destroy');
+
+
+//List one Article
+Route::get('clases/{id}','ClaseController@index');
+
+//List one Article
+Route::get('clase/{id}','ClaseController@show');
+
+//Create new Article
+Route::post('clase','ClaseController@store');
+
+//Update Article
+Route::put('clase/{id}','ClaseController@update');
+
+//Delete Article
+Route::delete('clase/{id}','ClaseController@destroy');
+
 
 });

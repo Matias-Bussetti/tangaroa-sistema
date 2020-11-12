@@ -1,10 +1,11 @@
 <template>
     <div>
-        <div class="row align-middle" style="backgroung-color: #f0e9c9" @click="addSemana">
-            <i style="margin: auto;" class="fa fa-plus" aria-hidden="true"></i>
-        </div>
+        
         <div v-for="semana in semanas" v-bind:key="semana.id">
             <Semana :data="JSON.stringify(semana)" :token="token"></Semana>
+        </div>
+        <div class="row align-middle" style="backgroung-color: #f0e9c9" @click="addSemana">
+            <i style="margin: auto;" class="fa fa-plus" aria-hidden="true"></i>
         </div>
     </div>
 </template>
@@ -64,7 +65,7 @@ export default {
                 method: 'POST', 
             }).then(res => res.json()).then(res => {
 
-                console.log("semana added");
+            
                 this.fetchSemanas();
 
 

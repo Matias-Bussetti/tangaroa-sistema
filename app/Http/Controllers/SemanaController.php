@@ -13,26 +13,6 @@ use App\Models\Semana;
 class SemanaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-      //!Retorna todos los paquetes
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-      return view('Semanas.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -62,18 +42,6 @@ class SemanaController extends Controller
     public function show($id)
     {
       return SemanaResource::collection(Semana::where('pack_id', $id)->get());
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        //
     }
 
     /**
