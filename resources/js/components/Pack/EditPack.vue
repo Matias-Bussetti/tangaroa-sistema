@@ -100,7 +100,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-success btn-block mt-12">Agregar Paquete</button>
+                <button type="submit" class="btn btn-success btn-block mt-12">Guardar Paquete</button>
 
             </form>
         </div>

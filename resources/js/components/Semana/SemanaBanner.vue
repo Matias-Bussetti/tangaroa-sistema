@@ -6,33 +6,25 @@
             <input :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
             <i id="editIcon" style="margin: auto;" class="fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
         </div>
+
         <div class="row">
-            
-            <div class="col-1 m-auto" v-for="clase in clases" v-bind:key="clase.id">
-                <div class="box ml-4">
-                    {{clase.name}}
-                    <a :href="'/admin/settings/edit-clase/' + clase.name + '/etiqueta/' + clase.id">edit</a>
-                </div>
+
+            <slot></slot>
+ 
+            <div v-for="clase in clases" :key="clase.id">
+                <Clasesmallbox :data="clase"></Clasesmallbox>
             </div>
 
-            {{this.clases.length}}
-            
-            <!-- <div class="col-1 m-auto" v-if="(this.clases || this.clases.length < 5)" @click="addClase">
-                <i style="margin: auto;" class="fa fa-plus" aria-hidden="true"></i>
-            </div> -->
-            
+            <p @click="addClase">add</p>
+
         </div>
-        
-        
+
     </div>
 </template>
 
 <script>
-
 export default {
-    
-    props: ['data','token'],
-
+    props: ['data', 'token'],
     data() {
         return {
             semana: {
@@ -46,12 +38,10 @@ export default {
     },
 
     created() {
-        this.semana = JSON.parse(this.data);
-        this.clases = this.semana.clases;
+        this.semana = this.data
     },
 
     methods: {
-
         async editSemana() {
 
             this.edit = !this.edit;
@@ -87,8 +77,6 @@ export default {
             }
         },
 
-        
-
         async addClase() {
 
             const formData = new FormData();
@@ -106,12 +94,7 @@ export default {
             }).catch(err => console.log(err));
         },
 
-
     },
-
-
-
-
 }
 </script>
 

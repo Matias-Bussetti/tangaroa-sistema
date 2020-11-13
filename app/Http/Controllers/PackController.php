@@ -120,6 +120,12 @@ class PackController extends Controller
       return new PackResource($pack);
     }
 
+    public function showView($id)
+    {
+      $pack = Pack::findorFail($id);
+      return view('Packs.show', compact('pack'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

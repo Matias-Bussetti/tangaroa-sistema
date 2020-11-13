@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clase extends Model
 {
-    protected $fillable = ['name','description','link','type','foreign_id'];
+    protected $fillable = ['name','description','link'];
 
 
     //Relaciones

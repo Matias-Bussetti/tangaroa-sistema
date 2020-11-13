@@ -41,7 +41,7 @@ class SemanaController extends Controller
      */
     public function show($id)
     {
-      return SemanaResource::collection(Semana::where('pack_id', $id)->get());
+      return SemanaResource::collection(Semana::where('pack_id', $id)->orderby('id', 'ASC')->get());
     }
 
     /**

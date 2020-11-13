@@ -1,10 +1,11 @@
 <template>
     <div>
-        <div class="box ml-4">
-        {{clase.name}}
+        <div class="card text-white bg-dark col" style="max-width: 18rem;">
+            <div class="card-header">{{clase.name}}</div>
         </div>
     </div>
 </template>
+
 <script>
 export default {
     props: ['data'],
@@ -13,14 +14,13 @@ export default {
             clase: {
                 id: '',
                 name: '',
-                description: '',
-                link: ''
             },
         }
     },
 
     created() {
-        this.clase = JSON.parse(this.data);
+        this.clase.id = this.data.id;
+        this.clase.name = this.data.name;
     },
 }
 </script>

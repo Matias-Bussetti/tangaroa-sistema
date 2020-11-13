@@ -58,6 +58,20 @@ class ClaseController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  string  $clase_name
+     * @param  int  $clase_id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($clase_name, $clase_id)
+    {
+        $clase = Clase::where('id',$clase_id)->where('name',$clase_name)->first();
+
+        return view('Clases.edit',compact('clase'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -67,6 +81,41 @@ class ClaseController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        // * Mensajes del Validador
+      $messages = [
+        'name.required' => 'Ingrese un Nombre',
+        'name.max' => 'Ingrese un Nombre con menos de 30 caracteres',
+        'description.required' => 'Escriba un descripción',
+        'link.required' => 'Ingrese un link',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:30',
+            'description' => 'required',
+            'link' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+
+            $errors = $validator->errors();
+    
+            return ['data' => ['errors' => $errors]];
+    
+          }
+
+          $clase = Clase::findOrFail($id);
+
+          $clase->name = $request->input('name');
+          $clase->description = $request->input('description');
+          $clase->link = $request->input('link');
+    
+          if($clase->save()) {
+              return new ClaseResource($clase);
+          }
+
+        return $request;
+
     }
 
     /**

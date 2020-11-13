@@ -112,9 +112,7 @@
     import VueCroppie from 'vue-croppie';
     import 'croppie/croppie.css' // import the croppie css manually
     export default {
-        props: {
-            csrfToken: String,
-        },
+
         data() {
             return {
                 errors: {
@@ -196,8 +194,6 @@
                 });
 
                 const formData = new FormData();
-
-                formData.append('csrf-token', this.csrfToken);
 
                 if (this.pack.name) {
                     formData.append('name', this.pack.name);
