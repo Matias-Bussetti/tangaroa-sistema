@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('Packs', require('./components/Pack/Packs.vue').default);
 Vue.component('Pack', require('./components/Pack/Pack.vue').default);
+Vue.component('Packbanner', require('./components/Pack/PackBanner.vue').default);
 Vue.component('Addpack', require('./components/Pack/AddPack.vue').default);
 Vue.component('Editpack', require('./components/Pack/EditPack.vue').default);
 

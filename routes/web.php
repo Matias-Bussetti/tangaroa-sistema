@@ -29,10 +29,15 @@ Route::group(['middleware' => 'auth'], function () {
   //Rutas de Administración y configuración
   Route::prefix('admin/settings')->group(function(){
 
+    Route::get('/home', function(){
+      return view('Admin.home');
+    });
+
     Route::get('/show-pack/{id}','PackController@showView');
 
     Route::get('/create-pack','PackController@create');
 
+    Route::get('/edit-pack/{id}','PackController@edit');
 
     Route::get('/edit-clase/{clase_name}/etiqueta/{clase_id}','ClaseController@edit');
 
@@ -46,7 +51,25 @@ Route::group(['middleware' => 'auth'], function () {
 
 // ! Borrar
 Route::get('/domotica/get', function(){
-  return "get";
+  $data = ["data" => [
+      0 => [
+        "id" => 0,
+        "name" => "abrir portón",
+        "key_name" => ["afuera", "auto " , "Auto "],
+      ],
+      1 => [
+        "id" => 1,
+        "name" => "bajar portón",
+        "key_name" => ["afuera", "auto " , "Auto "],
+      ],
+      2 => [
+        "id" => 2,
+        "name" => "prender luz",
+        "key_name" => ["lámpara"],
+      ],
+    ]
+  ];
+  return $data;
 });
 
 Route::post('/domotica/send', function(Request $request){

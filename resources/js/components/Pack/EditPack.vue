@@ -112,10 +112,7 @@
     import VueCroppie from 'vue-croppie';
     import 'croppie/croppie.css' // import the croppie css manually
     export default {
-        props: {
-            csrfToken: String,
-            packId: Number,
-        },
+        props: ['id','token'],
         data() {
             return {
                 errors: {
@@ -131,14 +128,12 @@
                     image_vertical: '',
                     image_horizontal: '',
                 },
-                token: null,
                 image_file_vertical: null,
                 image_file_horizontal: null,
             }
         },
 
         created() {
-            console.log(this.packId);
             this.fetchPack();
         },
 
@@ -146,16 +141,9 @@
 
             async fetchPack() {
 
-                await fetch('/get-personal/token')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.token = res.data;
-                    })
-                    .catch(err => console.log(err));
+                
 
-                let vm = this;
-
-                await fetch(`/api/pack/${vm.packId}`, {
+                await fetch(`/api/pack/${this.id}`, {
                     headers: {
                         "Authorization": `Bearer ${this.token}`
                     }
@@ -178,7 +166,6 @@
 
             async editPack() {
 
-                let vm = this;
                 //Recorta las imagenes
                 let options = {
                     format: 'jpeg',
@@ -224,8 +211,6 @@
 
                 const formData = new FormData();
 
-                //formData.append('csrf-token', );
-
                 if (this.pack.name) {
                     formData.append('name', this.pack.name);
                 }
@@ -248,12 +233,11 @@
 
                 formData.append('_method', 'PUT');
 
-                fetch(`/api/pack/${vm.packId}`, {
+                fetch(`/api/pack/${this.id}`, {
                     method: 'POST',
                     body: formData,
                     headers: {
                         "Authorization": `Bearer ${this.token}`,
-                        "X-CSRF-TOKEN": vm.csrfToken
                     }
                 }).then(res => res.json()).then(res => {
 
@@ -261,6 +245,7 @@
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
+                        window.location.href = `/admin/settings/show-pack/${this.id}`;
                     }
 
                 }).catch(err => console.warn(err));

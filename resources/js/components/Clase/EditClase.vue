@@ -58,7 +58,7 @@
 
 <script>
 export default {
-    props: ['data', 'token'],
+    props: ['data', 'packId', 'token'],
     data() {
         return {
             clase: {
@@ -112,7 +112,7 @@ export default {
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
-                        // ! window.location.href = '/admin/settings/show-pack/';
+                        window.location.href = `/admin/settings/show-pack/${this.packId}`;
                     }
 
                 }).catch(err => console.warn(err));

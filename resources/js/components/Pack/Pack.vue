@@ -10,7 +10,9 @@
         <div v-if="!loading" class="pack ml-2 mr-2" :class="{loaded: expand}" :style="{ background: `linear-gradient(180deg, rgba(0,0,0,1) 9%, rgba(0,0,0,0.9164040616246498) 15%, rgba(0,212,255,0) 100%), url('${pack.pack.image_vertical}')` }">
             <!-- <img :src="pack.pack.image_vertical" alt=""> -->
             <h4 class="title">{{pack.pack.name}}</h4>
-            <button @click="deletePack(pack.pack.id)">X</button>
+            <a :href="'/admin/settings/show-pack/'+pack.pack.id">View</a>
+            <a  :href="'/admin/settings/edit-pack/'+pack.pack.id"><i id="editIcon" style="margin: auto;" class="fa fa-pencil" aria-hidden="true"></i></a>
+            <!-- <button @click="deletePack(pack.pack.id)">X</button> -->
             
            
         </div>
@@ -19,7 +21,7 @@
 
 <script>
 export default {
-    props:[ 'pack' ],
+    props:[ 'pack','token'],
     data() {
         return {
             loading: true,
@@ -34,15 +36,7 @@ export default {
 
     methods: {
         async deletePack(id) {
-            let vm = this;
-
-            await fetch('/get-personal/token')
-            .then(res => res.json())
-            .then(res => { 
-                this.token = res.data;
-                //console.log(res.data); 
-            })
-            .catch(err => console.log(err));
+            
 
             fetch(`api/pack/${id}` , 
             { headers: {

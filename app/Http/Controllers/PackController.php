@@ -134,7 +134,7 @@ class PackController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Packs.edit', compact('id'));
     }
 
     /**
@@ -188,7 +188,7 @@ class PackController extends Controller
       {
         $file = $request->file('image_vertical');//---> asignamos a $file el valor de lo que traemos del request como imagen
         $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
-        $file_name_vertical = $pack->image_vertical;
+        $file_name_vertical = str_replace("/img/pack/","",$pack->image_vertical);
         Storage::disk('pack')->put($file_name_vertical, file_get_contents($file));//---> guardamos el archivo en el storage
       }
 
@@ -196,7 +196,7 @@ class PackController extends Controller
       {
         $file = $request->file('image_horizontal');//---> asignamos a $file el valor de lo que traemos del request como imagen
         $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
-        $file_name_horizontal = $pack->image_horizontal;//---> armamos el nombre del archivo
+        $file_name_horizontal = str_replace("/img/pack/","",$pack->image_horizontal);//---> armamos el nombre del archivo
         Storage::disk('pack')->put($file_name_horizontal, file_get_contents($file));//---> guardamos el archivo en el storage
       }
 
