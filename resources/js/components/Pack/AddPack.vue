@@ -235,6 +235,7 @@
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
+                        window.location.href = '/admin/settings/';
                     }
 
                 }).catch(err => console.log(err));

@@ -2,14 +2,15 @@
     <div>
         <div class="card text-white bg-dark col" style="max-width: 18rem;">
             <div class="card-header">{{clase.name}}</div>
-            <a :href="'/admin/settings/edit-clase/' + clase.name + '/etiqueta/' + clase.id">edit</a>
+            <a :href="'/my-workout/' + clase.name + '/tag/' + clase.id">View</a>
+            <a v-if="admin" :href="'/admin/settings/edit-clase/' + clase.name + '/etiqueta/' + clase.id">edit</a>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['data'],
+    props: ['data','admin'],
     data() {
         return {
             clase: {

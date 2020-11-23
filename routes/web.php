@@ -19,21 +19,29 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 //Rutas Para Usuarios Autenticados
 Route::group(['middleware' => 'auth'], function () {
 
+  Route::get('/home', 'PackController@list');
+  
+  Route::get('/my-pack/{name}/tag/{id}', 'PackController@showView');
+
+  Route::get('/my-workout/{name}/tag/{id}', 'ClaseController@showView');
+  
+
   //Rutas de Administración y configuración
   Route::prefix('admin/settings')->group(function(){
 
-    Route::get('/home', function(){
+    Route::get('/', function(){
       return view('Admin.home');
     });
 
-    Route::get('/show-pack/{id}','PackController@showView');
+    Route::get('/show-pack/{name}/tag/{id}','PackController@showView');
 
     Route::get('/create-pack','PackController@create');
 
@@ -48,6 +56,16 @@ Route::group(['middleware' => 'auth'], function () {
   });
 
 });
+
+
+
+
+
+
+
+
+
+
 
 // ! Borrar
 Route::get('/domotica/get', function(){
@@ -73,5 +91,6 @@ Route::get('/domotica/get', function(){
 });
 
 Route::post('/domotica/send', function(Request $request){
+  return $request->all();
   Log::channel('pack')->info($request);
 });

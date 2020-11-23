@@ -3,14 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Pack as PackResource;
 use App\Models\Pack;
 
 class PackController extends Controller
 {
+
+    public function list(){
+
+      
+      $packs = Auth::user()->userPacks->map(function ($item, $key){
+        return $item->pack;
+      });
+
+      return view('home', compact('packs'));
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -118,12 +132,32 @@ class PackController extends Controller
       $pack = Pack::findorFail($id);
 
       return new PackResource($pack);
+
     }
 
-    public function showView($id)
+    public function showView($name, $id)
     {
       $pack = Pack::findorFail($id);
-      return view('Packs.show', compact('pack'));
+
+      if (Auth::user()->isAdmin == 0) {
+
+      $pack = Auth::user()->userPacks->map(function ($item, $key) use ($id, $name){
+        if($item->pack->id == $id && $item->pack->name == $name) {
+          return $item->pack;
+        }
+      })->whereNotNull()->first();
+
+      }
+
+      if(!($pack == [])){
+
+        return view('Packs.show', compact('pack'));
+
+      } else {
+
+        abort(404);
+      }
+      
     }
 
     /**
@@ -227,4 +261,5 @@ class PackController extends Controller
       }
 
     }
+    
 }

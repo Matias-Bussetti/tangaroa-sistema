@@ -27,6 +27,7 @@ class SemanaController extends Controller
 
       $semana->name = "Semana ".($pack->semanas->count() + 1);
       $semana->pack_id = $pack->id;
+      $semana->color = "#ffed4a";
 
       if($semana->save()) {
           return new SemanaResource($semana);

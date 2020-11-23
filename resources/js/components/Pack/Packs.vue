@@ -12,7 +12,8 @@
 
             <div v-if="!loading" class="scrollx">
                 <div class="m-auto pb-3" v-for="pack in packs" v-bind:key="pack.id">
-                    <pack :pack="{ pack }"></pack>
+                    <!-- <pack :pack="{ pack }"></pack> -->
+                    {{pack.name}}
                 </div>
             </div>
 
@@ -26,11 +27,10 @@
 import axios from 'axios';
 
 export default {
-    
+    props: ['token'],
     data() {
         return {
             loading: true,
-            token: '',
             packs: [],
             pack: {
                 id: '',
@@ -50,15 +50,6 @@ export default {
 
     methods: {
         async fetchPacks() {
-            let vm = this;
-
-            await fetch('/get-personal/token')
-            .then(res => res.json())
-            .then(res => { 
-                this.token = res.data;
-                //console.log(res.data); 
-            })
-            .catch(err => console.log(err));
 
             fetch('/api/pack' , 
             { headers: {

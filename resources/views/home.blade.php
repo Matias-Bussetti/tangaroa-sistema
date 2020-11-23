@@ -5,9 +5,17 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <a href="{{ str_replace(url('/'), '', url()->previous())}}"><i class="fas fa-arrow-left"></i></a>
-        <Packs :token="{{ json_encode(Auth::user()->api_token) }}"></Packs>
+
+        @php
+            $isAdmin = Auth::user()->isAdmin ? "true" : "false";
+        @endphp
+
+        @foreach ($packs as $pack)
         
+            <PackPortrait :data="{{ json_encode($pack) }}" :admin="{{$isAdmin}}"></PackPortrait>
+        
+        @endforeach
+    
     </div>
     
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +56,18 @@ class ClaseController extends Controller
     public function show($id)
     {
         return ClaseResource::collection(Clase::findorFail($id));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showView($name, $id)
+    {
+        $clase = Clase::select('id','name','description','link')->where('id',$id)->where('name',$name)->first();
+        return view('Clases.show', compact('clase'));
     }
 
     /**

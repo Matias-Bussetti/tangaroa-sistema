@@ -4,11 +4,11 @@
 
             <h4 class="col-11" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
 
-            <input :id="(semana.name + '-inputText')" type="text" class="col-11 input-text" v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
+            <input v-if="admin" :id="(semana.name + '-inputText')" type="text" class="col-11 input-text" v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
 
-            <input :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
+            <input v-if="admin" :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
 
-            <i id="editIcon" style="margin: auto;" class="fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
+            <i v-if="admin" id="editIcon" style="margin: auto;" class="fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
             
         </div>
 
@@ -17,10 +17,10 @@
             <slot></slot>
  
             <div v-for="clase in clases" :key="clase.id">
-                <Clasesmallbox :data="clase"></Clasesmallbox>
+                <Clasesmallbox :data="clase" :admin="admin"></Clasesmallbox>
             </div>
 
-            <p @click="addClase">add</p>
+            <p v-if="admin" @click="addClase">add</p>
 
         </div>
 
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    props: ['data', 'token'],
+    props: ['data', 'token', 'admin'],
     data() {
         return {
             semana: {

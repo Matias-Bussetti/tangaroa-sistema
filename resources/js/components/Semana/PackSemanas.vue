@@ -6,7 +6,7 @@
         </div>
         <div class="row align-middle" style="backgroung-color: #f0e9c9" @click="addSemana">
             <i style="margin: auto;" class="fa fa-plus" aria-hidden="true"></i>
-        </div>-
+        </div>
     </div>
 </template>
 
@@ -34,9 +34,6 @@ export default {
         this.pack.image_horizontal = this.packData.image_horizontal;
 
         this.semanas = this.semanaData;
-        //console.log(this.semanaData);
-        //console.log(JSON.parse(this.packData.semanas));
-        //this.semana = JSON.parse(this.packData);
     },
 
     methods: {

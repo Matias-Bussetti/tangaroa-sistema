@@ -24,4 +24,11 @@ class Pack extends Model
     {
         return $this->hasMany('App\Models\Semana');
     }
+
+
+    //me to many
+    public function userPacks()
+    {
+        return $this->hasMany('App\Models\User_Pack');
+    }
 }

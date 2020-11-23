@@ -25,12 +25,16 @@ Vue.component('Packbanner', require('./components/Pack/PackBanner.vue').default)
 Vue.component('Addpack', require('./components/Pack/AddPack.vue').default);
 Vue.component('Editpack', require('./components/Pack/EditPack.vue').default);
 
+Vue.component('Packportrait', require('./components/Pack/PackPortrait.vue').default);
+
+
 Vue.component('Packsemanas', require('./components/Semana/PackSemanas.vue').default);
 Vue.component('Semana', require('./components/Semana/Semana.vue').default);
 Vue.component('Semanabanner', require('./components/Semana/SemanaBanner.vue').default);
 
 Vue.component('Clasesmallbox', require('./components/Clase/ClaseSmallBox.vue').default);
 Vue.component('Editclase', require('./components/Clase/EditClase.vue').default);
+Vue.component('Claseview', require('./components/Clase/ClaseView.vue').default);
 
 
 /**

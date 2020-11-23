@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'http://http://192.168.0.71:8000/domotica/*',
     ];
 }
