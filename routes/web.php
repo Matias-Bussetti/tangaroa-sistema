@@ -27,6 +27,9 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //Rutas Para Usuarios Autenticados
 Route::group(['middleware' => 'auth'], function () {
 
+  Route::get('/paypal/pay/{pack_id}', 'PaymentController@payWithPayPal');
+  Route::get('/paypal/status/{pack_id}', 'PaymentController@payPalStatus');
+
   Route::get('/home', 'PackController@list');
   
   Route::get('/my-pack/{name}/tag/{id}', 'PackController@showView');

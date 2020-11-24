@@ -6,6 +6,10 @@
 
     <div class="row justify-content-center">
 
+        @if (isset($status))
+            {{$status}}
+        @endif
+
         @php
             $isAdmin = Auth::user()->isAdmin ? "true" : "false";
         @endphp
