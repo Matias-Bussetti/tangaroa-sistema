@@ -26,6 +26,7 @@ Vue.component('Addpack', require('./components/Pack/AddPack.vue').default);
 Vue.component('Editpack', require('./components/Pack/EditPack.vue').default);
 
 Vue.component('Packportrait', require('./components/Pack/PackPortrait.vue').default);
+Vue.component('Packsale', require('./components/Pack/PackSale.vue').default);
 
 
 Vue.component('Packsemanas', require('./components/Semana/PackSemanas.vue').default);

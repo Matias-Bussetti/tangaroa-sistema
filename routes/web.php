@@ -27,8 +27,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //Rutas Para Usuarios Autenticados
 Route::group(['middleware' => 'auth'], function () {
 
-  Route::get('/paypal/pay/{pack_id}', 'PaymentController@payWithPayPal');
-  Route::get('/paypal/status/{pack_id}', 'PaymentController@payPalStatus');
+  
 
   Route::get('/home', 'PackController@list');
   
@@ -36,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::get('/my-workout/{name}/tag/{id}', 'ClaseController@showView');
   
+  Route::get('/sale', function (){ return view('Products.sale');});
+  Route::get('/paypal/pay/{pack_id}', 'PaymentController@payWithPayPal');
+  Route::get('/paypal/status/{pack_id}', 'PaymentController@payPalStatus');
 
   //Rutas de Administración y configuración
   Route::prefix('admin/settings')->group(function(){

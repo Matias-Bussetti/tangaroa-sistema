@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Styles -->
         <style>
@@ -79,20 +80,20 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div id="app" class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
                 {{-- App\Models\Pack::all() --}}
                 @foreach (App\Models\Pack::all() as $pack)
-                <Packbanner :data="{{json_encode($pack) }}" :admin="false">
-                    a
-                </Packbanner>
-                @endforeach
+                <Packsale :data="{{json_encode($pack) }}" :admin="false">
+                    
+                </Packsale>
+                <!-- a href="{{ url('/paypal/pay/'.$pack->id) }}">Pay</a -->
+                @endforeach 
     
                 <div class="links">
 
-                <a href="{{ url('/paypal/pay/1') }}">Pay</a>
                 </div>
             </div>
         </div>

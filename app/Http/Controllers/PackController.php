@@ -186,6 +186,11 @@ class PackController extends Controller
       'description.required' => 'Escriba un descripción',
       'price.required' => 'Ingrese un Precio',
       'price.numeric' => 'El Precio debe de ser numerico',
+      'price.gt' => 'El Precio debe de ser mayor de 0',
+      'price_offer.numeric' => 'El Precio de oferta debe de ser numerico',
+      'price_offer.lt' => 'El Precio de oferta debe de ser menor al Precio sin oferta',
+      'price_offer.gt' => 'El Precio de oferta debe de ser mayor de 0',
+      'date_offer.after' => 'La fecha de la oferta tiene que ser mayor a hoy',
       'image_vertical.file' => 'Elija una Imagen que sea un archivo',
       'image_vertical.max' => 'Elija una Imagen que menor de 20 mb',
       'image_vertical.mimes' => 'Elija una Imagen con la extención: jpeg o png',
@@ -199,7 +204,9 @@ class PackController extends Controller
       $validator = Validator::make($request->all(), [
       'name' => 'required',
       'description' => 'required',
-      'price' => 'required|numeric',
+      'price' => 'required|numeric|gt:0',
+      'price_offer' => 'numeric|lt:price|gt:0',
+      'date_offer' => 'after:today',
       'image_vertical' => 'file|max:20000|mimes:jpeg,png',
       'image_horizontal' => 'file|max:20000|mimes:jpeg,png',
       ], $messages);
@@ -238,7 +245,11 @@ class PackController extends Controller
       $pack->description = $request->input('description');
       $pack->position = $request->input('position');
       $pack->price = $request->input('price');
-
+      $pack->price_offer = $request->input('price_offer');
+      $pack->date_offer = $request->input('date_offer');
+      
+      //dd($pack);
+      
       if($pack->save()) {
           return new PackResource($pack);
       }

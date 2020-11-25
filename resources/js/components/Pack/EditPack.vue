@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input v-bind:class="[{'invalid': errors.price}]" class="form-control" type="number"
-                            name="price" id="price" v-model="pack.price">
+                            name="price" id="price" v-model="pack.price" step=".01">
                         <label for="price">Precio</label>
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.price" v-bind:key="index">
@@ -43,6 +43,32 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <input v-bind:class="[{'invalid': errors.date_offer}]" class="form-control" type="date"
+                            name="date_offer" id="date_offer" v-model="pack.date_offer" >
+                        <label for="date_offer">Fecha limite de oferta</label>
+                        <ul class="invalid-error">
+                            <li v-for="(value, index) in errors.date_offer" v-bind:key="index">
+                                {{ value }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input v-bind:class="[{'invalid': errors.price_offer}]" class="form-control" type="number"
+                            name="price_offer" id="price_offer" v-model="pack.price_offer" step=".01">
+                        <label for="price_offer">Precio de Oferta</label>
+                        <ul class="invalid-error">
+                            <li v-for="(value, index) in errors.price_offer" v-bind:key="index">
+                                {{ value }}
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
                 <div class="file-field input-field">
@@ -127,6 +153,9 @@
                     price: null,
                     image_vertical: '',
                     image_horizontal: '',
+                    price_offer: null,
+                    date_offer: null,
+
                 },
                 image_file_vertical: null,
                 image_file_horizontal: null,
@@ -223,6 +252,14 @@
                     formData.append('price', this.pack.price);
                 }
 
+                if (this.pack.date_offer) {
+                    formData.append('date_offer', this.pack.date_offer);
+                }
+
+                if (this.pack.price_offer) {
+                    formData.append('price_offer', this.pack.price_offer);
+                }
+
                 if (this.image_file_vertical) {
                     formData.append('image_vertical', this.image_file_vertical);
                 }
@@ -245,7 +282,7 @@
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
-                        window.location.href = `/admin/settings/show-pack/${this.id}`;
+                        window.location.href = `/admin/settings/show-pack/${this.pack.name}/tag/${this.id}`;
                     }
 
                 }).catch(err => console.warn(err));

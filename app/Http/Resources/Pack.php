@@ -21,6 +21,8 @@ class Pack extends JsonResource
             'price' => $this->price,
             'image_vertical'  => $this->image_vertical,
             'image_horizontal'  => $this->image_horizontal,
+            'price_offer' => $this->price_offer,
+            'date_offer' => $this->date_offer,
         ];
     }
     

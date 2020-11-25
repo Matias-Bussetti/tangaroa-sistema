@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input v-bind:class="[{'invalid': errors.price}]" class="form-control" type="number"
-                            name="price" id="price" v-model="pack.price">
+                            name="price" id="price" v-model="pack.price"  step=".01">
                         <label for="price">Precio</label>
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.price" v-bind:key="index">
