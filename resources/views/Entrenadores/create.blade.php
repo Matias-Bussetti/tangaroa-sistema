@@ -6,7 +6,7 @@
 
       <a href="/admin/settings/"><i class="fas fa-arrow-left"></i></a>
 
-      <AddPack :token="{{ json_encode(Auth::user()->api_token) }}"></AddPack>
+      <AddEntrenador :token="{{ json_encode(Auth::user()->api_token) }}"></AddEntrenador>
 
   </div>
 

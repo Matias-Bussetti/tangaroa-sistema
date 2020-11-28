@@ -112,7 +112,7 @@
     import VueCroppie from 'vue-croppie';
     import 'croppie/croppie.css' // import the croppie css manually
     export default {
-
+        props: ['token'],
         data() {
             return {
                 errors: {

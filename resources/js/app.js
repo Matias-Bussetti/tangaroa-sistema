@@ -37,6 +37,10 @@ Vue.component('Clasesmallbox', require('./components/Clase/ClaseSmallBox.vue').d
 Vue.component('Editclase', require('./components/Clase/EditClase.vue').default);
 Vue.component('Claseview', require('./components/Clase/ClaseView.vue').default);
 
+Vue.component('Addentrenador', require('./components/Entrenador/AddEntrenador.vue').default);
+Vue.component('Editentrenador', require('./components/Entrenador/EditEntrenador.vue').default);
+Vue.component('Entrenador', require('./components/Entrenador/Entrenador.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

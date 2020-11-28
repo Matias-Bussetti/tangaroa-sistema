@@ -24,49 +24,66 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'api'], function () {
 
-//List Articles
+Route::apiResource('user','UserController');
+
+//List Packs
 Route::get('pack','PackController@index');// Only one with the s
 
-//List one Article
+//List one Pack
 Route::get('pack/{id}','PackController@show');
 
-//Create new Article
+//Create new Pack
 Route::post('pack','PackController@store');
 
-//Update Article
+//Update Pack
 Route::put('pack/{id}','PackController@update');
 
-//Delete Article
+//Delete Pack
 Route::delete('pack/{id}','PackController@destroy');
 
 
-//List one Article
+//List one Semana
 Route::get('semana/{id}','SemanaController@show');
 
-//Create new Article
+//Create new Semana
 Route::post('semana','SemanaController@store');
 
-//Update Article
+//Update Semana
 Route::put('semana/{id}','SemanaController@update');
 
-//Delete Article
+//Delete Semana
 Route::delete('semana/{id}','SemanaController@destroy');
 
 
-//List one Article
+//List one Clase
 Route::get('clases/{id}','ClaseController@index');
 
-//List one Article
+//List one Clase
 Route::get('clase/{id}','ClaseController@show');
 
-//Create new Article
+//Create new Clase
 Route::post('clase','ClaseController@store');
 
-//Update Article
+//Update Clase
 Route::put('clase/{id}','ClaseController@update');
 
-//Delete Article
+//Delete Clase
 Route::delete('clase/{id}','ClaseController@destroy');
+
+//List Entrenador
+Route::get('entrenador','EntrenadorController@index');// Only one with the s
+
+//List one Entrenador
+Route::get('entrenador/{id}','EntrenadorController@show');
+
+//Create new Entrenador
+Route::post('entrenador','EntrenadorController@store');
+
+//Update Entrenador
+Route::put('entrenador/{id}','EntrenadorController@update');
+
+//Delete Entrenador
+Route::delete('entrenador/{id}','EntrenadorController@destroy');
 
 
 });

@@ -70,6 +70,12 @@ return [
             'url' => env('APP_URL').'/img/pack',
         ],
 
+        'entrenador' => [
+            'driver' => 'local',
+            'root' => storage_path('../public/img/entrenador'),
+            'url' => env('APP_URL').'/img/entrenador',
+        ],
+
     ],
 
     /*

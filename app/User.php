@@ -45,4 +45,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\User_Pack');
     }
+
+    //me to one
+    public function entrenador()
+    {
+        return $this->hasOne('App\Models\Entrenador');
+    }
 }
