@@ -4,7 +4,7 @@
 
 <div class="full-height container" style="margin-top: 10px;margin-bottom:40px;">
     
-    <a href="{{ str_replace(url('/'), '', url()->previous())}}"><i class="fas fa-arrow-left"></i></a>
+    <a href="/home"><i class="fas fa-arrow-left"></i></a>
     
     <Packbanner :data="{{json_encode($pack) }}" :admin="false">
 

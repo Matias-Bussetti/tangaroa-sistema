@@ -76,26 +76,11 @@
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
+                        
                     @endauth
                 </div>
             @endif
 
-            <div id="app" class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-                {{-- App\Models\Pack::all() --}}
-                @foreach (App\Models\Pack::all() as $pack)
-                <Packsale :data="{{json_encode($pack) }}" :admin="false">
-                    
-                </Packsale>
-                <!-- a href="{{ url('/paypal/pay/'.$pack->id) }}">Pay</a -->
-                @endforeach 
-    
-                <div class="links">
-
-                </div>
-            </div>
         </div>
     </body>
 </html>

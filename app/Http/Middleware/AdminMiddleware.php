@@ -17,9 +17,14 @@ class AdminMiddleware
     {
       //Si el usuario autenticado es administrador, déjalo pasar, y si no, redirígelo a la ruta principal.
 
-      if (auth()->check() && auth()->user()->isAdmin)
+      if (auth()->check() && auth()->user()->isAdmin == 1)
         return $next($request);
 
-      return redirect('/');
+        //dd("sos adm");
+
+      //dd("no sos adm");
+        
+      
+      return redirect('/home');
     }
 }

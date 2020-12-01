@@ -27,25 +27,24 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //Rutas Para Usuarios Autenticados
 Route::group(['middleware' => 'auth'], function () {
 
-
+  //Página de clase en especifico
+  Route::get('/my-workout/{name}/tag/{id}', 'ClaseController@showView');
 
   //Rutas de Cliente
   Route::group(['middleware' => 'client'], function () {
-
     
     Route::get('/home', 'PackController@list');
   
     //Página de Paquete en especifico 
     Route::get('/my-pack/{name}/tag/{id}', 'PackController@showView');
 
-    //Página de clase en especifico
-    Route::get('/my-workout/{name}/tag/{id}', 'ClaseController@showView');
     
     //Página de Ofertas
     Route::get('/sale', function (){ return view('Products.sale');});
 
     //Comprar un Paquete
     Route::get('/paypal/pay/{pack_id}', 'PaymentController@payWithPayPal');
+
     Route::get('/paypal/status/{pack_id}', 'PaymentController@payPalStatus');
 
   });
@@ -53,30 +52,32 @@ Route::group(['middleware' => 'auth'], function () {
 
 
   //Rutas de Administración y configuración
-  Route::prefix('admin/settings')->group(function(){
+  Route::group(['middleware' => 'admin'], function () {
 
-    Route::get('/', function(){
-      return view('Admin.home');
+    Route::prefix('admin/settings')->group(function(){
+
+        Route::get('/', function(){
+          return view('Admin.home');
+        });
+        
+        //Pack
+        Route::get('/show-pack/{name}/tag/{id}','PackController@showView');
+
+        Route::get('/create-pack','PackController@create');
+
+        Route::get('/edit-pack/{id}','PackController@edit');
+
+        //Clase
+        Route::get('/edit-clase/{clase_name}/etiqueta/{clase_id}','ClaseController@edit');
+
+        //Entrenador
+        Route::get('/show-entrenador','EntrenadorController@list');
+
+        Route::get('/create-entrenador','EntrenadorController@create');
+
+        Route::get('/edit-entrenador/{id}','EntrenadorController@edit');
+
     });
-
-    
-    //Pack
-    Route::get('/show-pack/{name}/tag/{id}','PackController@showView');
-
-    Route::get('/create-pack','PackController@create');
-
-    Route::get('/edit-pack/{id}','PackController@edit');
-
-    //Clase
-    Route::get('/edit-clase/{clase_name}/etiqueta/{clase_id}','ClaseController@edit');
-
-    //Entrenador
-    Route::get('/show-entrenador','EntrenadorController@list');
-
-    Route::get('/create-entrenador','EntrenadorController@create');
-
-    Route::get('/edit-entrenador/{id}','EntrenadorController@edit');
-
 
   });
 
