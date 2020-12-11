@@ -8,7 +8,7 @@
           $pack = App\Models\Pack::findorFail($id);
       @endphp
 
-      <a href="/admin/settings/show-pack/{{$pack->name}}/tag/{{$pack->id}}"><i class="fas fa-arrow-left"></i></a>
+      <a class="back-icon" href="/admin/settings/show-pack/{{$pack->name}}/tag/{{$pack->id}}"><i class="fas fa-arrow-left"></i></a>
 
       <EditPack :id="{{ $id }}" :token="{{ json_encode(Auth::user()->api_token) }}"></EditPack>
 

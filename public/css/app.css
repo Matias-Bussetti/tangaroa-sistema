@@ -1,5 +1,313 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.clase {
+  color: white;
+  background-color: #38c172;
+  width: 600px;
+  height: 600px;
+}
+
+.clase:hover {
+  color: #3490dc;
+}
+
+.scroll-x {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.portrait {
+  margin: 20px 30px;
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 800px;
+  min-height: 800px;
+  position: relative;
+  transition: 0.5s;
+  color: white;
+  font-size: 2em;
+}
+
+.portrait .title-container {
+  z-index: 99;
+  position: absolute;
+  top: 5%;
+  text-align: center;
+  max-width: 300px;
+  min-width: 300px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.portrait .link-container {
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 100px;
+  min-height: 100px;
+  position: absolute;
+  bottom: 0%;
+  text-align: center;
+}
+
+.portrait a {
+  position: absolute;
+  color: #fffaaf;
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 800px;
+  min-height: 800px;
+}
+
+.portrait a:hover {
+  color: #ffea00;
+}
+
+.portrait:hover {
+  transform: scale(1.05);
+}
+
+.banner {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 180px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+
+.banner .title-container {
+  width: 100%;
+  top: 40%;
+  position: absolute;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+.banner .edit-icon {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  color: #fffaaf;
+}
+
+.banner .edit-icon i {
+  border: 1px solid #fffaaf;
+  border-radius: 75px;
+  padding: 10px;
+}
+
+.banner .edit-icon:hover {
+  color: #ffea00;
+  border: #ffea00;
+  border-radius: 75px;
+}
+
+@media (max-width: 1600px) {
+  .banner {
+    background-size: 1600px 100%;
+  }
+}
+
+.add-semana {
+  text-align: center;
+  background-color: #86ff86;
+}
+
+.add-semana i {
+  margin: 10px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 1.2em;
+}
+
+.semana {
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.semana .title {
+  text-shadow: 1px 1px 2px black;
+  color: white;
+  float: left;
+  width: 90%;
+  margin: 0;
+  padding-left: 15%;
+  box-sizing: border-box;
+}
+
+.semana .edit-icon {
+  width: 10%;
+  height: 100%;
+  box-sizing: border-box;
+  color: #797979;
+}
+
+.semana .edit-form {
+  float: left;
+  width: 90%;
+  margin: 0;
+  padding-left: 15%;
+}
+
+.semana .edit-form .input-color {
+  position: absolute;
+  left: 5%;
+  width: 20px;
+}
+
+.semana .edit-form .input-text {
+  height: 24px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 1.35rem;
+  background: transparent;
+  border: 0px solid white;
+}
+
+.semana .edit-form textarea:focus,
+.semana .edit-form input:focus {
+  outline: none;
+}
+
+.clase-container-container {
+  overflow-x: scroll;
+}
+
+.clase-container-container .clase-container {
+  display: flex;
+  padding: 5px 5%;
+  justify-content: space-evenly;
+}
+
+.clase-container-container .clase-container .clase-box {
+  display: inline-table;
+  position: relative;
+  height: 150px;
+  background: #d4d4d4;
+  width: 160px;
+  text-align: center;
+  transition: 0.5s;
+  border: 1px 1px 0px 1px solid #a3a3a3;
+}
+
+.clase-container-container .clase-container .clase-box h3 {
+  font-size: 1.5em;
+  margin: auto;
+  padding: 20px;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.clase-container-container .clase-container .clase-box h3 .nodecoration {
+  color: black;
+  text-decoration: none;
+}
+
+.clase-container-container .clase-container .clase-box i {
+  margin-bottom: 13px;
+  font-size: 25px;
+}
+
+.clase-container-container .clase-container .clase-box .edit-icon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 99;
+}
+
+.clase-container-container .clase-container .clase-box .edit-icon i {
+  font-size: 18px;
+  color: black;
+}
+
+@media (max-width: 1300px) {
+  .clase-container {
+    width: 1000px;
+    margin: auto;
+  }
+}
+
+.back-icon {
+  font-size: 15px;
+  position: absolute;
+  left: 5%;
+  top: 90px;
+  z-index: 99;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+#body {
+  background-color: rgba(0, 0, 0, 0.062);
+}
+
+#navbar {
+  background-image: url("/img/page/navbar-background.jpg");
+}
+
+#navbar a {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-family: "Asap", sans-serif;
+}
+
+#navbar .dropdown-menu a {
+  color: black;
+  text-shadow: 1px 1px 2px white;
+}
+
+.pre-footer {
+  height: 300px;
+}
+
+#footer {
+  padding: 30px;
+  height: 100px;
+  text-align: center;
+  color: white;
+  background-color: #2e2e2e;
+  padding: 20px;
+}
+
+form .form-div {
+  display: flex;
+  margin: 20px;
+}
+
+form .form-div label {
+  width: 15%;
+}
+
+form .form-div .input {
+  width: 85%;
+}
+
+form .submit-button {
+  padding: 5px;
+  width: 100%;
+  background: #FCE83C;
+  font-weight: 500;
+  color: black;
+  border: 0.5px black solid;
+}
+
+@media (max-width: 780px) {
+  form .form-div {
+    display: inherit;
+  }
+
+  form .form-div label {
+    width: 100%;
+  }
+
+  form .form-div .input {
+    width: 100%;
+  }
+}
+
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -4186,6 +4494,10 @@ input[type=button].btn-block {
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
   content: "Browse";
+}
+
+.custom-file-input:lang(es) ~ .custom-file-label::after {
+  content: "Elegir";
 }
 
 .custom-file-input ~ .custom-file-label[data-browse]::after {

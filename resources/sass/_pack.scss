@@ -1,0 +1,96 @@
+// Variables
+@import './variables';
+
+.scroll-x {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.portrait {
+    margin: 20px 30px;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 800px;
+    min-height: 800px;
+    position: relative;
+    transition: 0.5s;
+    color: white;
+    font-size: 2em;
+
+    .title-container {
+        z-index: 99;
+        position: absolute;
+        top: 5%;
+        text-align: center;
+        max-width: 300px;
+        min-width: 300px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .link-container {
+        max-width: 300px;
+        min-width: 300px;
+        max-height: 100px;
+        min-height: 100px;
+        position: absolute;
+        bottom: 0%;
+        text-align: center;
+    }
+
+    a{
+        position: absolute;
+        color: $colorA;
+        max-width: 300px;
+        min-width: 300px;
+        max-height: 800px;
+        min-height: 800px;
+        &:hover {
+            color: $colorAH;
+        }
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+}
+
+.banner {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 180px;
+    width: 100%;
+    background-repeat: no-repeat; background-position: center center; background-size: 100% 100%;
+    .title-container{
+        width: 100%;
+        top: 40%;
+        position: absolute;
+        text-align: center;
+        text-shadow: 1px 1px 2px black; 
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .edit-icon{
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        color: $colorA;
+        i{
+            border: 1px solid $colorA;
+            border-radius: 75px;
+            padding: 10px;
+        }
+        &:hover{
+            color: $colorAH;
+            border: $colorAH;
+            border-radius: 75px;
+        }
+    }
+}
+
+@media (max-width: 1600px) {
+    .banner {
+        background-size: 1600px 100%;
+    }
+}

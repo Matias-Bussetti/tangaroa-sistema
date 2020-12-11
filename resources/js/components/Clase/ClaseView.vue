@@ -3,7 +3,7 @@
 
         <div class="delimitador">
 
-            <h1 class="ml-3">{{clase.name}}</h1>
+            <h1 class="ml-1">{{clase.name}}</h1>
 
             <div class="contenedor">
                 <iframe :src="clase.link" class="video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>

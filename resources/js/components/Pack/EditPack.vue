@@ -7,66 +7,80 @@
             <form @submit.prevent="editPack" class="col s12 mb-2">
 
                 <div class="row">
-                    <div class="input-field col s12">
+
                         <input v-bind:class="[{'invalid': errors.name}]" class="form-control" type="text" name="name"
                             id="name" v-model="pack.name">
+
                         <label for="name">Nombre</label>
+
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.name" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-                    </div>
+
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s12">
+
                         <textarea v-bind:class="[{'invalid': errors.description}]" class="materialize-textarea"
                             name="description" id="description" v-model="pack.description"></textarea>
+
                         <label for="description">Descripción</label>
+
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.description" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-                    </div>
+
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s12">
+
                         <input v-bind:class="[{'invalid': errors.price}]" class="form-control" type="number"
                             name="price" id="price" v-model="pack.price" step=".01">
+
                         <label for="price">Precio</label>
+
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.price" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-                    </div>
+
                 </div>
 
                 <div class="row">
 
                     <div class="input-field col s12">
+
                         <input v-bind:class="[{'invalid': errors.date_offer}]" class="form-control" type="date"
-                            name="date_offer" id="date_offer" v-model="pack.date_offer" >
+                            name="date_offer" id="date_offer" v-model="pack.date_offer">
+
                         <label for="date_offer">Fecha limite de oferta</label>
+
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.date_offer" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
+
                     </div>
 
                     <div class="input-field col s12">
+
                         <input v-bind:class="[{'invalid': errors.price_offer}]" class="form-control" type="number"
                             name="price_offer" id="price_offer" v-model="pack.price_offer" step=".01">
+
                         <label for="price_offer">Precio de Oferta</label>
+
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.price_offer" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
+
                     </div>
 
                 </div>
@@ -112,8 +126,8 @@
                     </div>
 
                     <vue-croppie style="margin: auto;" ref="imgHorizontal" :enableOrientation="false"
-                        :enableResize="false" :viewport="{ width: 1200, height: 200, 'type':'square' }"
-                        :boundary="{ width: 1200, height: 200}">
+                        :enableResize="false" :viewport="{ width: 1600, height: 200, 'type':'square' }"
+                        :boundary="{ width: 1600, height: 200}">
                     </vue-croppie>
 
 

@@ -6,55 +6,59 @@
 
             <form @submit.prevent="addPack" class="col s12 mb-2">
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input v-bind:class="[{'invalid': errors.name}]" class="form-control" type="text" name="name"
+                <div class="form-div">
+
+                        <label for="name">Nombre</label> 
+                    
+                        <input v-bind:class="[{'invalid': errors.name}]" class="input" type="text" name="name"
                             id="name" v-model="pack.name">
-                        <label for="name">Nombre</label>
+                    
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.name" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-                    </div>
+                    
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea v-bind:class="[{'invalid': errors.description}]" class="materialize-textarea"
-                            name="description" id="description" v-model="pack.description"></textarea>
+                <div class="form-div">
+                
                         <label for="description">Descripción</label>
+                
+                        <textarea v-bind:class="[{'invalid': errors.description}]" class="input"
+                            name="description" id="description" v-model="pack.description"></textarea>
+                
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.description" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-                    </div>
+                
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input v-bind:class="[{'invalid': errors.price}]" class="form-control" type="number"
-                            name="price" id="price" v-model="pack.price"  step=".01">
+                <div class="form-div">
+                
                         <label for="price">Precio</label>
+                
+                        <input v-bind:class="[{'invalid': errors.price}]" class="input" type="number"
+                            name="price" id="price" v-model="pack.price"  step=".01">
+                
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.price" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-                    </div>
+                
                 </div>
 
-                <div class="file-field input-field">
+                <div class="form-croppie">
 
                     <h4>Imagen Vertical</h4>
 
-                    <div class="btn col s12 mb-4">
-                        <span>Abrir</span>
-                        <input class="form-control" type="file" name="image_vertical" id="image_file_vertical"
-                            @change="changeImageVertical" accept="image/png, image/jpeg">
-                        <div class="file-path-wrapper" hidden>
-                            <input class="file-path validate" type="text">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image_vertical" id="image_file_vertical" @change="changeImageVertical" accept="image/png, image/jpeg">
+                            <label class="custom-file-label" for="image_file_profile">Elegir una Imagen</label>
                         </div>
                     </div>
 
@@ -72,24 +76,25 @@
 
                 </div>
 
-                <div class="file-field input-field">
+                <div class="form-croppie">
 
                     <h4>Imagen Horizontal</h4>
 
-                    <div class="btn col s12 mb-4">
-                        <span>Abrir</span>
-                        <input class="form-control" type="file" name="image_horizontal" id="image_file_horizontal"
-                            @change="changeImageHorizontal" accept="image/png, image/jpeg">
-                        <div class="file-path-wrapper" hidden>
-                            <input class="file-path validate" type="text">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image_horizontal" id="image_file_horizontal" @change="changeImageHorizontal" accept="image/png, image/jpeg">
+                            <label class="custom-file-label" for="image_file_profile">Elegir una Imagen</label>
                         </div>
                     </div>
 
-                    <vue-croppie style="margin: auto;" ref="imgHorizontal" :enableOrientation="false"
-                        :enableResize="false" :viewport="{ width: 1200, height: 200, 'type':'square' }"
-                        :boundary="{ width: 1200, height: 200}">
+                    <div class="scroll-x">
+
+                        <vue-croppie style="margin: auto;" ref="imgHorizontal" :enableOrientation="false"
+                        :enableResize="false" :viewport="{ width: 1600, height: 200, 'type':'square' }"
+                        :boundary="{ width: 1600, height: 200}">
                     </vue-croppie>
 
+                    </div>
 
                     <ul class="invalid-error" v-bind:class="[{'invalid-top': errors.image_horizontal}]">
                         <li v-for="(value, index) in errors.image_horizontal" v-bind:key="index">
@@ -100,7 +105,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-success btn-block mt-12">Agregar Paquete</button>
+                <button type="submit" class="submit-button">Agregar Paquete</button>
 
             </form>
         </div>
@@ -143,7 +148,7 @@
                 url: '/img/page/300x800.png',
             });
             this.$refs.imgHorizontal.bind({
-                url: '/img/page/1200x200.png',
+                url: '/img/page/1600x200.png',
             });
         },
 

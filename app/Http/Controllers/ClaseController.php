@@ -37,8 +37,10 @@ class ClaseController extends Controller
         $clase = new Clase;
 
         $semana = Semana::findorFail($request->input('semana_id'));
-        
-        $clase->name = "Clase";
+        $pack = Pack::findorFail($semana->pack_id);
+
+        $clase->name = "Día ".((count($pack->semanas)-1)*5+(count($semana->clases)+1));
+
         $clase->group_id = $semana->id;
         $clase->group_type = "App\Models\Semana";
 

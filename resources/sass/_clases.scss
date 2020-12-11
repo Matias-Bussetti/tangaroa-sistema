@@ -1,0 +1,64 @@
+@import './variables';
+
+.clase-container-container {
+    overflow-x: scroll;
+
+    .clase-container {
+        display: flex;
+        padding: 5px 5%;
+        justify-content: space-evenly;
+
+        .clase-box {
+            display: inline-table;
+            position: relative;
+            height: 150px;
+            background: rgb(212, 212, 212);
+            width: 160px;
+            text-align: center;
+            transition: 0.5s;
+            border: 1px 1px 0px 1px solid rgb(163, 163, 163);
+
+            h3 {
+                font-size: 1.5em;
+                margin: auto;
+                padding: 20px;
+                font-family: 'Titillium Web', sans-serif;
+
+                .nodecoration {
+                    color: black;
+                    text-decoration: none;
+                }
+            }
+
+            i {
+                margin-bottom: 13px;
+                font-size: 25px;
+            }
+
+            .edit-icon {
+                position: absolute;
+                top: 5%;
+                right: 5%;
+                z-index: 99;
+
+                i {
+                    font-size: 18px;
+                    color: black;
+                }
+            }
+
+            &:hover {
+                //transform: scale(1.05);
+                //border-bottom: 8px solid rgb(140, 194, 255);
+            }
+
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .clase-container {
+        width: 1000px;
+        margin: auto;
+    }
+}

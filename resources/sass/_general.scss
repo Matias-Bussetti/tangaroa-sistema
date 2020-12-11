@@ -1,0 +1,45 @@
+@import './variables';
+
+.back-icon {
+    font-size: 15px;
+    position: absolute;
+    left: 5%;
+    top: 90px;
+    z-index: 99;
+    color: white;
+    mix-blend-mode: difference;
+}
+
+#body {
+    background-color: rgba(0, 0, 0, 0.062);
+}
+
+#navbar {
+    background-image: url('/img/page/navbar-background.jpg');
+
+    a {
+        color: white;
+        text-shadow: 1px 1px 2px black;
+        font-family: 'Asap', sans-serif;
+    }
+
+    .dropdown-menu a {
+        color: black;
+        text-shadow: 1px 1px 2px white;
+    }
+}
+
+.pre-footer {
+    height: 300px;
+}
+
+
+
+#footer {
+    padding: 30px;
+    height: 100px;
+    text-align: center;
+    color: white;
+    background-color: #2e2e2e;
+    padding: 20px;
+}

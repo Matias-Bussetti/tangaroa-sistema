@@ -1,35 +1,37 @@
 <template>
     <div>
-        <div class="row align-middle" :style="{ 'background-color': semana.color }">
+        <div class="semana" :style="{ 'background-color': semana.color }">
 
-            <h4 class="col-11" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
+            <h4 class="title" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
+            
+            <div class="edit-form">
+                
+                <input v-if="admin" :id="(semana.name + '-inputText')" type="text" class="input-text" v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
 
-            <input v-if="admin" :id="(semana.name + '-inputText')" type="text" class="col-11 input-text" v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
+                <input v-if="admin" :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
 
-            <input v-if="admin" :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
-
-            <i v-if="admin" id="editIcon" style="margin: auto;" class="fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
+            </div>
+            
+            <i v-if="admin" id="editIcon" class="edit-icon fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
             
         </div>
-
-        <div class="row">
+        <div class="clase-container-container">
+        <div class="clase-container">
 
             <slot></slot>
  
-            <div v-for="clase in clases" :key="clase.id">
-                <Clasesmallbox :data="clase" :admin="admin"></Clasesmallbox>
-            </div>
+            <!--<Clasesmallbox v-for="clase in clases" :key="clase.id" :data="clase" :admin="admin" :index="'n'"></Clasesmallbox>-->
 
-            <p v-if="admin" @click="addClase">add</p>
+            <div class="clase-box" v-if="admin && counter<5" @click="addClase"><i data-v-fc6ec140="" aria-hidden="true" class="fa fa-plus"></i></div>
 
-        </div>
+        </div></div>
 
     </div>
 </template>
 
 <script>
 export default {
-    props: ['data', 'token', 'admin'],
+    props: ['data', 'token', 'admin', 'count'],
     data() {
         return {
             semana: {
@@ -39,11 +41,13 @@ export default {
             },
             edit: false,
             clases: [],
+            counter: '',
         }
     },
 
     created() {
         this.semana = this.data
+        this.counter = this.count
     },
 
     methods: {
@@ -95,33 +99,20 @@ export default {
                 body: formData,
                 method: 'POST', 
             }).then(res => res.json()).then(res => {
+                //console.log(res.data)
+                this.counter++
                 this.clases.push(res.data);
             }).catch(err => console.log(err));
         },
 
     },
+     computed: {
+         position: function() {
+             return count;
+         }
+     }
 }
 </script>
 
-<style scoped>
-h4 {
-    /*display: none;*/
-    color: white;
-    mix-blend-mode: difference;
-}
-.input-color{
-    width: 30px;
-    height: 30px;
-}
-.input-text {
-    color: white;
-    mix-blend-mode: difference;
-    font-size: 1.35rem;
-    background: transparent;
-    border: 0px solid white;
-}
-textarea:focus, input:focus{
-    outline: none;
-}
-</style>
+
     

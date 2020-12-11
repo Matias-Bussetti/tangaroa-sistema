@@ -1,16 +1,27 @@
 <template>
-    <div>
-        <div class="card text-white bg-dark col" style="max-width: 18rem;">
-            <div class="card-header">{{clase.name}}</div>
-            <a :href="'/my-workout/' + clase.name + '/tag/' + clase.id">View</a>
-            <a v-if="admin" :href="'/admin/settings/edit-clase/' + clase.name + '/etiqueta/' + clase.id">edit</a>
-        </div>
+
+    <div @click="viewWorkout" class="clase-box">
+
+        <h3 class="title">
+                {{clase.name}}
+        </h3>
+
+        <i class="far fa-times-circle text-danger"></i>
+        <!-- <i class="far fa-check-circle text-success"></i> -->
+
+        <p>Día {{index}} de 5</p>
+
+        <a class="edit-icon" v-if="admin" :href="'/admin/settings/edit-clase/' + clase.name + '/etiqueta/' + clase.id">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+        </a>
+
     </div>
+
 </template>
 
 <script>
 export default {
-    props: ['data','admin'],
+    props: ['data', 'admin', 'index'],
     data() {
         return {
             clase: {
@@ -24,13 +35,11 @@ export default {
         this.clase.id = this.data.id;
         this.clase.name = this.data.name;
     },
+
+    methods: {
+        viewWorkout() {
+            window.location.href = `/my-workout/${this.clase.name}/tag/${this.clase.id}`;
+        }
+    },
 }
 </script>
-
-<style scoped>
-.box{
-    width: auto;
-    background-color: grey;
-    height: 50px;
-}
-</style>

@@ -22,8 +22,6 @@
         </div>
     </nav>
 
-    <a href="/admin/settings/"><i class="fas fa-arrow-left"></i></a>
-
     @foreach ($entrenadores as $entrenador)
         <Entrenador :data="{{json_encode($entrenador) }}"></Entrenador>
     @endforeach

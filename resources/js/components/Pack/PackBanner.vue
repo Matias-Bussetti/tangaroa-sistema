@@ -1,27 +1,29 @@
 <template>
     <div>
-        <div class="col-12">
-            <div style="display: flex;">
+        <div class="banner" :style="`background-image: url('${data.image_horizontal}');`">
 
-                <img class="col-12" :src="data.image_horizontal" alt="">
-
-                <h1 class="title">{{data.name}}</h1>
-
-                <a v-if="admin" :href="'/admin/settings/edit-pack/' + data.id"><i id="editIcon" style="margin: auto;"
-                        class="fa fa-pencil" aria-hidden="true"></i></a>
-
+            <div class="title-container">
+                <h1>{{data.name}}</h1>
             </div>
 
-            <div v-if="admin" class="row align-middle" style="backgroung-color: #f0e9c9" @click="addSemana">
-                <i style="margin: auto;" class="fa fa-plus" aria-hidden="true"></i>
-            </div>
+            <a class="edit-icon" v-if="admin" :href="'/admin/settings/edit-pack/' + data.id">
+                <i id="editIcon" style="margin: auto;" class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
 
-            <slot></slot>
-
-            <div v-for="semana in semanas" :key="semana.id">
-                <Semanabanner :data="semana" :token="token" :admin="admin" ></Semanabanner>
-            </div>
         </div>
+
+        
+
+        <slot></slot>
+
+        <div v-for="semana in semanas" :key="semana.id">
+            <Semanabanner :data="semana" :token="token" :admin="admin" :count="0"></Semanabanner>
+        </div>
+
+        <div v-if="admin" class="add-semana" @click="addSemana">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </div>
+        
     </div>
 </template>
 
