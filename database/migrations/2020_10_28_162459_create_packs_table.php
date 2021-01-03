@@ -18,6 +18,7 @@ class CreatePacksTable extends Migration
             $table->string('name', 30);
             $table->text('description');
             $table->smallInteger('position')->nullable();
+            $table->tinyInteger('type');
             $table->double('price', 8, 2);
             $table->double('price_offer', 8, 2)->nullable();
             $table->date('date_offer')->nullable();

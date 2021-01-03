@@ -198,7 +198,7 @@
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
-                        window.location.href = '/admin/settings/';
+                        window.location.href = '/admin/settings/show-entrenador';
                     }
 
                 }).catch(err => console.log(err));
@@ -241,25 +241,5 @@
 
 <style scoped>
 
-.input-field .invalid {
-    border-bottom: 1px solid #f00;
-    box-shadow: 0 1px 0 0 #f00;
-}
-
-.input-field .invalid-top {
-    border-top: 2px solid #f00;
-    box-shadow: 0 0 -2px 0 #f00;
-}
-
-.invalid-error {
-    color: #e3342f;
-}
-
-img {
-    display: block;
-
-    /* This rule is very important, please don't ignore this */
-    max-width: 100%;
-}
 
 </style>

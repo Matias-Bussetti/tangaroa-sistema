@@ -28,7 +28,6 @@ Vue.component('Editpack', require('./components/Pack/EditPack.vue').default);
 Vue.component('Packportrait', require('./components/Pack/PackPortrait.vue').default);
 Vue.component('Packsale', require('./components/Pack/PackSale.vue').default);
 
-
 Vue.component('Packsemanas', require('./components/Semana/PackSemanas.vue').default);
 Vue.component('Semana', require('./components/Semana/Semana.vue').default);
 Vue.component('Semanabanner', require('./components/Semana/SemanaBanner.vue').default);
@@ -40,6 +39,12 @@ Vue.component('Claseview', require('./components/Clase/ClaseView.vue').default);
 Vue.component('Addentrenador', require('./components/Entrenador/AddEntrenador.vue').default);
 Vue.component('Editentrenador', require('./components/Entrenador/EditEntrenador.vue').default);
 Vue.component('Entrenador', require('./components/Entrenador/Entrenador.vue').default);
+
+Vue.component('Presencialcontainer', require('./components/Presencial/PresencialContainer.vue').default);
+Vue.component('Presencialbox', require('./components/Presencial/PresencialBox.vue').default);
+Vue.component('Addpresencial', require('./components/Presencial/AddPresencial.vue').default);
+Vue.component('Editpresencial', require('./components/Presencial/EditPresencial.vue').default);
+
 
 
 /**

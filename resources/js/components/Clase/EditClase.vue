@@ -7,13 +7,14 @@
 
             <form @submit.prevent="editClase" class="col s12 mb-2">
 
-                <div class="row">
-
-
-                        <input v-bind:class="[{'invalid': errors.name}]" class="form-control" type="text" name="name"
-                            id="name" v-model="clase.name">
+                <div class="form-div">
 
                         <label for="name">Nombre</label>
+
+                        <input v-bind:class="[{'invalid': errors.name}]" class="input" type="text" name="name"
+                            id="name" v-model="clase.name">
+
+                </div>
 
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.name" v-bind:key="index">
@@ -21,40 +22,36 @@
                             </li>
                         </ul>
 
-                </div>
-
-                <div class="row">
-
-
-                        <input v-bind:class="[{'invalid': errors.description}]" class="form-control" type="text"
-                            name="description" id="description" v-model="clase.description">
+                <div class="form-div">
 
                         <label for="description">Descripción</label>
 
+                        <input v-bind:class="[{'invalid': errors.description}]" class="input" type="text"
+                            name="description" id="description" v-model="clase.description">
+
+
+                </div>
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.description" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
 
-                </div>
-
-                <div class="row">
-
-
-                        <input v-bind:class="[{'invalid': errors.link}]" class="form-control" type="text" name="link"
-                            id="link" v-model="clase.link">
+                <div class="form-div">
 
                         <label for="link">Link del Video</label>
+
+                        <input v-bind:class="[{'invalid': errors.link}]" class="input" type="text" name="link"
+                            id="link" v-model="clase.link">
+
+
+                </div>
 
                         <ul class="invalid-error">
                             <li v-for="(value, index) in errors.link" v-bind:key="index">
                                 {{ value }}
                             </li>
                         </ul>
-
-                </div>
-
 
 
                 <button type="submit" class="submit-button">Guardar Paquete</button>
@@ -121,7 +118,7 @@ export default {
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
-                        window.location.href = `/admin/settings/show-pack/${this.packId}`;
+                        window.location.href = `/admin/settings/show-pack/${res.data.name}/tag/${res.data.id}`;
                     }
 
                 }).catch(err => console.warn(err));

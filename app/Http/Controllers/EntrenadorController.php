@@ -20,6 +20,7 @@ class EntrenadorController extends Controller
     public function list()
     {
         $entrenadores = User::where('isAdmin',1)->with('entrenador')->get();
+        $entrenadores = $entrenadores->whereNotNull('entrenador');
 
         return view('Entrenadores.show', compact('entrenadores'));
     }

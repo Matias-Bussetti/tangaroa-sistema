@@ -61,6 +61,7 @@ class PackController extends Controller
       'description.required' => 'Escriba un descripción',
       'price.required' => 'Ingrese un Precio',
       'price.numeric' => 'El Precio debe de ser numerico',
+      'type.required' => 'Elige el tipo del paquete',
       'image_vertical.required' => 'Elija una Imagen',
       'image_vertical.file' => 'Elija una Imagen que sea un archivo',
       'image_vertical.max' => 'Elija una Imagen que menor de 20 mb',
@@ -76,6 +77,7 @@ class PackController extends Controller
       'name' => 'required',
       'description' => 'required',
       'price' => 'required|numeric',
+      'type' => 'required',
       'image_vertical' => 'required|file|max:20000|mimes:jpeg,png',
       'image_horizontal' => 'required|file|max:20000|mimes:jpeg,png',
       ], $messages);
@@ -112,6 +114,7 @@ class PackController extends Controller
       $pack->description = $request->input('description');
       $pack->position = $request->input('position');
       $pack->price = $request->input('price');
+      $pack->type = $request->input('type');
       $pack->image_vertical = strval("/img/pack/".$file_name_vertical);
       $pack->image_horizontal = strval("/img/pack/".$file_name_horizontal);
 
@@ -137,6 +140,7 @@ class PackController extends Controller
 
     public function showView($name, $id)
     {
+      
       $pack = Pack::findorFail($id);
 
       if (Auth::user()->isAdmin == 0) {

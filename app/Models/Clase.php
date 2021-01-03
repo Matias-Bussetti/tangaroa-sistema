@@ -11,6 +11,12 @@ class Clase extends Model
 
     //Relaciones
 
+    //me to many
+    public function userClases()
+    {
+        return $this->hasMany('App\Models\User_Pack');
+    }
+
     //me to One
 
     public function group()

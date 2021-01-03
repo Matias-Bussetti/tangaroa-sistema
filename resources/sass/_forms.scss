@@ -1,7 +1,6 @@
 @import './variables';
 
-$custom-file-text: (
-    en: "Browse",
+$custom-file-text: (en: "Browse",
     es: "Elegir"
 );
 
@@ -20,7 +19,7 @@ form {
 
     }
 
-    .submit-button{
+    .submit-button {
         padding: 5px;
         width: 100%;
         background: #FCE83C;
@@ -28,9 +27,23 @@ form {
         color: black;
         border: 0.5px black solid;
     }
+
+    .input-field .invalid {
+        border-bottom: 1px solid #f00;
+        box-shadow: 0 1px 0 0 #f00;
+    }
+    
+    .input-field .invalid-top {
+        border-top: 2px solid #f00;
+        box-shadow: 0 0 -2px 0 #f00;
+    }
+    
+    .invalid-error {
+        color: #e3342f;
+    }
 }
 
-@media(max-width: 780px){
+@media(max-width: 780px) {
     form {
         .form-div {
             display: inherit;
@@ -38,7 +51,7 @@ form {
             label {
                 width: 100%;
             }
-    
+
             .input {
                 width: 100%;
             }

@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Clase as ClaseResource;
+use App\Http\Resources\Pack as PackResource;
 use App\Models\Pack;
 use App\Models\Semana;
 use App\Models\Clase;
+use App\User;
+use App\Models\User_Clase;
 
 class ClaseController extends Controller
 {
@@ -126,10 +129,8 @@ class ClaseController extends Controller
           $clase->link = $request->input('link');
     
           if($clase->save()) {
-              return new ClaseResource($clase);
+              return new PackResource($clase->group->pack);
           }
-
-        return $request;
 
     }
 
@@ -142,5 +143,27 @@ class ClaseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function claseDone($clase_id, $user_id){
+
+        $user = User::findOrFail($user_id);
+
+        $clase = Clase::findOrFail($clase_id);
+
+        if(User_Clase::where('clase_id',$clase_id)->where('user_id',$user_id)->get()->isEmpty()){
+
+            $user_clase = new User_Clase();
+            $user_clase->clase_id = $clase_id;
+            $user_clase->user_id = $user_id;
+            $user_clase->pack_id = $clase->group->pack->id;
+
+            $user_clase->save();
+       
+        }
+
+        return new PackResource($clase->group->pack);
+
     }
 }

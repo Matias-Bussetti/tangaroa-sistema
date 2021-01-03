@@ -3,28 +3,35 @@
         <div class="semana" :style="{ 'background-color': semana.color }">
 
             <h4 class="title" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
-            
-            <div class="edit-form">
-                
-                <input v-if="admin" :id="(semana.name + '-inputText')" type="text" class="input-text" v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
 
-                <input v-if="admin" :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
+            <div class="edit-form">
+
+                <input v-if="admin" :id="(semana.name + '-inputText')" type="text" class="input-text"
+                    v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
+
+                <input v-if="admin" :id="(semana.name + '-inputColor')" type="color" class="input-color"
+                    v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
 
             </div>
-            
-            <i v-if="admin" id="editIcon" class="edit-icon fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
-            
+
+            <i v-if="admin" id="editIcon" class="edit-icon fa " :class="[edit ? 'fa-save': 'fa-pencil']"
+                aria-hidden="true" @click="editSemana"></i>
+
         </div>
+
         <div class="clase-container-container">
-        <div class="clase-container">
+            <div class="clase-container">
 
-            <slot></slot>
- 
-            <!--<Clasesmallbox v-for="clase in clases" :key="clase.id" :data="clase" :admin="admin" :index="'n'"></Clasesmallbox>-->
+                <slot></slot>
 
-            <div class="clase-box" v-if="admin && counter<5" @click="addClase"><i data-v-fc6ec140="" aria-hidden="true" class="fa fa-plus"></i></div>
+                <Clasesmallbox v-for="clase in clases" :key="clase.id" :data="clase" :admin="admin" :index="'n'"></Clasesmallbox>
 
-        </div></div>
+                <div class="clase-box" style="padding: 56px;" v-if="admin && counter<5" @click="addClase">
+                    <i data-v-fc6ec140="" aria-hidden="true" class="m-auto fa fa-plus"></i>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 </template>
@@ -99,9 +106,10 @@ export default {
                 body: formData,
                 method: 'POST', 
             }).then(res => res.json()).then(res => {
-                //console.log(res.data)
                 this.counter++
                 this.clases.push(res.data);
+                //console.log(this.clases)
+
             }).catch(err => console.log(err));
         },
 

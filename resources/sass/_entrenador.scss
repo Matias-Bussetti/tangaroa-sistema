@@ -1,0 +1,37 @@
+@import './variables';
+
+.entrenador-container {
+    display: flex;
+    padding: 10px 5%;
+    //justify-content: center;
+
+    .entrenador-box {
+        display: inline-table;
+        width: 300px;
+        margin: 0 20px;
+
+        .title-div {
+            text-align: center;
+
+            h2 {
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
+                padding-top: 10px;
+            }
+        }
+
+        .description {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .entrenador-container {
+        width: 1000px;
+        margin: auto;
+
+    }
+}

@@ -1,0 +1,74 @@
+@import './variables';
+
+.presenciales-container-container {
+    overflow-x: scroll;
+
+    .presenciales-container {
+        display: flex;
+        padding: 10px 5%;
+        justify-content: center;
+
+        .presenciales-box {
+            display: inline-table;
+            position: relative;
+            background: #5c5c5c0c;
+            width: 160px;
+            height: 270px;
+            text-align: center;
+            transition: 0.5s;
+            border: 1px solid #7e7e7e3d;
+            margin: 0 20px;
+
+            h4 {
+                font-size: 1.5em;
+                margin: auto;
+                padding: 20px;
+                font-family: 'Titillium Web', sans-serif;
+
+                .nodecoration {
+                    color: black;
+                    text-decoration: none;
+                }
+            }
+
+            .has-link{
+                position: absolute;
+                width: 100%;
+            }
+
+            p {
+                margin-top: 40px;
+            }
+
+            i {
+                margin-bottom: 13px;
+                font-size: 25px;
+            }
+
+            a {
+                margin-top: 35%;
+            }
+            
+            .edit-icon {
+                margin: 0;
+                position: absolute;
+                top: 2%;
+                right: 5%;
+                z-index: 99;
+
+                i {
+                    font-size: 14px;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .presenciales-container {
+        width: 1000px;
+        margin: auto;
+
+    }
+}

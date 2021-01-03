@@ -13,8 +13,8 @@
         @else
             <a class="back-icon" href="/my-pack/{{ $pack->name }}/tag/{{ $pack->id }}"><i class="fas fa-arrow-left"></i></a>
         @endif
-        <div class="pl-5">
-            <Claseview :data="{{json_encode($clase) }}" :admin="{{$isAdmin}}"></Claseview> 
+        <div class="">
+            <Claseview :data="{{json_encode($clase) }}" :user-id="{{ Auth::user()->id }}" :admin="{{$isAdmin}}"></Claseview> 
         </div>
     </div>
 @stop

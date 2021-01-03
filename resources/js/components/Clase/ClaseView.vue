@@ -4,21 +4,31 @@
         <div class="delimitador">
 
             <h1 class="ml-1">{{clase.name}}</h1>
-
+            <p>{{clase.description}}</p>
             <div class="contenedor">
-                <iframe :src="clase.link" class="video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <iframe :src="clase.link" class="video video-iframe" frameborder="0" allow="autoplay; fullscreen"
+                    allowfullscreen></iframe>
             </div>
-            
+    
+            <br>
+    
+            <div v-if="!admin" class="done-button-container">
+                <a class="btn done-button" style="background: #FCE83C;" @click="doneClase" href="#" role="button">Hecho</a>
+            </div>
+
+
         </div>
 
-        <a href="#">Hecho</a>
-
+    <p>{{response}}</p>
     </div>
 </template>
 
 <script>
+
 export default {
-    props: ['data'],
+
+    props: ['data', 'userId', 'admin'],
+
     data() {
         return {
             clase: {
@@ -26,42 +36,31 @@ export default {
                 name: '',
                 description: '',
                 link: '',
-            }
+            },
+            response: '',
         }
     },
+
     created() {
         this.clase = this.data;
     },
+
+    methods: {
+
+        async doneClase() {
+
+                await fetch(`/api/clase/${this.clase.id}/user/${this.userId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${this.token}`
+                    }
+                }).then(res => res.json()).then(res => {
+
+                    console.log(res.data);
+                    
+                    window.location.href = `/my-pack/${res.data.name}/tag/${res.data.id}`;
+
+                }).catch(err => console.log(err));
+        }
+    },
 }
 </script>
-
-<style scoped>
-
-    /* Para tener un ancho máximo debemos de establecer el width del DIV.delimitador */
-    .delimitador {
-        min-width: 320px;
-        max-width: 720px;
-        margin: auto;
-    }
-
-    /* El contenedor con el padding-top crea el tamaño del vídeo */
-    .contenedor {
-        height: 0px;
-        width: 100%;
-        max-width: 720px;
-        /* Así establecemos el ancho máximo (si lo queremos) */
-        padding-top: 56.25%;
-        /* Relación: 16/9 = 56.25% */
-        position: relative;
-    }
-
-    /* El iframe se adapta al tamaño del contenedor */
-    iframe {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0px;
-        left: 0px;
-    }
-
-</style>

@@ -6,8 +6,8 @@
                 {{clase.name}}
         </h3>
 
-        <i class="far fa-times-circle text-danger"></i>
-        <!-- <i class="far fa-check-circle text-success"></i> -->
+        <i v-if="!admin" class="far" :class="[done ? 'fa-check-circle text-success' : 'fa-times-circle text-danger' ]"></i>
+        <i v-if="admin" class="fas fa-info-circle"></i>
 
         <p>Día {{index}} de 5</p>
 
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props: ['data', 'admin', 'index'],
+    props: ['data', 'admin', 'index', 'done'],
     data() {
         return {
             clase: {

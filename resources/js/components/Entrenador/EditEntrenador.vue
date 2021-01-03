@@ -143,7 +143,7 @@
 
                     //this.entrenador.entrenador = res.data.name;
 
-                    console.log(res.data);
+                    //console.log(res.data);
 
                     this.entrenador.name = res.data.name; 
                     this.entrenador.email = res.data.email; 
@@ -156,7 +156,7 @@
                     }
                 }).then(res => res.json()).then(res => {
 
-                    console.log(res.data);
+                    //console.log(res.data);
                     
                     this.entrenador.description = res.data.description; 
 
@@ -221,7 +221,7 @@
 
                 formData.append('_method', 'PUT');
 
-                fetch(`/api/entrenador/${this.id}`, {
+                fetch(`/api/entrenador/${this.entrenadorId}`, {
                     method: 'POST',
                     body: formData,
                     headers: {
@@ -233,7 +233,7 @@
                         this.errors = res.data.errors;
                     } else {
                         this.errors = [];
-                        console.warn(res.data);
+                        //console.warn(res.data);
                         window.location.href = `/admin/settings/show-entrenador`;
                     }
 

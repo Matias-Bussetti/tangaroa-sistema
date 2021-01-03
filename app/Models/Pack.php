@@ -25,8 +25,16 @@ class Pack extends Model
         return $this->hasMany('App\Models\Semana');
     }
 
+    public function presenciales()
+    {
+        return $this->hasMany('App\Models\Presencial');
+    }
 
-    //me to many
+    public function userClases()
+    {
+        return $this->hasMany('App\Models\User_Clase');
+    }
+
     public function userPacks()
     {
         return $this->hasMany('App\Models\User_Pack');

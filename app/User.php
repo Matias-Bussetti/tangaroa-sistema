@@ -46,6 +46,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\User_Pack');
     }
 
+    //me to many
+    public function userClases()
+    {
+        return $this->hasMany('App\Models\User_Pack');
+    }
+
     //me to one
     public function entrenador()
     {

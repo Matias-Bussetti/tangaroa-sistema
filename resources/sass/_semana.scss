@@ -1,12 +1,13 @@
 @import './variables';
 
-.add-semana{
+.add-semana {
     text-align: center;
     background-color: rgb(134, 255, 134);
-    i{
+
+    i {
         margin: 10px;
         color: white;
-        text-shadow: 1px 1px 2px black; 
+        text-shadow: 1px 1px 2px black;
         font-size: 1.2em;
     }
 }
@@ -15,8 +16,9 @@
     padding: 10px;
     overflow: hidden;
     position: relative;
+
     .title {
-        text-shadow: 1px 1px 2px black; 
+        text-shadow: 1px 1px 2px black;
         color: white;
         float: left;
         width: 90%;
@@ -32,30 +34,34 @@
         color: rgb(121, 121, 121);
     }
 
-    .edit-form{
+    .edit-form {
         float: left;
         width: 90%;
         margin: 0;
         padding-left: 15%;
-        .input-color{
+
+        .input-color {
             position: absolute;
             left: 5%;
             width: 20px;
         }
+
         .input-text {
             height: 24px;
             color: white;
-            text-shadow: 1px 1px 2px black; 
+            text-shadow: 1px 1px 2px black;
             font-size: 1.35rem;
             background: transparent;
             border: 0px solid white;
         }
-        textarea:focus, input:focus{
+
+        textarea:focus,
+        input:focus {
             outline: none;
         }
     }
 
-    
-    
+
+
 
 }

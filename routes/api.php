@@ -85,5 +85,27 @@ Route::put('entrenador/{id}','EntrenadorController@update');
 //Delete Entrenador
 Route::delete('entrenador/{id}','EntrenadorController@destroy');
 
+//List one Clase
+Route::get('clase/{clase_id}/user/{user_id}','ClaseController@claseDone');
+
+
+//List all Presencial From specific Pack
+Route::get('presenciales/{id}','PresencialController@showPack');
+
+//Create new Presencial
+Route::post('presencial','PresencialController@store');
+
+//Return Link of specific Class
+Route::get('presencial/link/{id}','PresencialController@giveLink');
+
+//List one Presencial
+Route::get('presencial/{id}','PresencialController@show');
+
+//Update Presencial
+Route::put('presencial/{id}','PresencialController@update');
+
+//Delete Presencial
+Route::delete('presencial/{id}','PresencialController@destroy');
+
 
 });

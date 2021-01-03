@@ -77,6 +77,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/edit-entrenador/{id}','EntrenadorController@edit');
 
+        //Presenciales
+        Route::get('/create-presencial/{id}','PresencialController@create');
+
+        Route::get('/edit-presencial/{id}','PresencialController@edit');
     });
 
   });
