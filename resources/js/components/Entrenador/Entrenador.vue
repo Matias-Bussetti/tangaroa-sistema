@@ -11,7 +11,7 @@
             <i id="editIcon" style="margin: auto;" class="fa fa-pencil" aria-hidden="true"></i>
         </a>
          -->
-        <a class="text-success" :href='"/admin/settings/edit-entrenador/"+entrenador.id'>Editar</a>
+        <a v-if="admin" class="text-success" :href='"/admin/settings/edit-entrenador/"+entrenador.id'>Editar</a>
 
     </div>
 </template>
@@ -19,7 +19,7 @@
 <script>
 export default {
     
-    props: ['data'],
+    props: ['data','admin'],
     
     data() {
         return {

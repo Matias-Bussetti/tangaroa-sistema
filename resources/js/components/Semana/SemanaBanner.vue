@@ -2,7 +2,7 @@
     <div>
         <div class="semana" :style="{ 'background-color': semana.color }">
 
-            <h4 class="title" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
+            <h4 class="stitle" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
 
             <div class="edit-form">
 

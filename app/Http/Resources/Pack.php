@@ -17,8 +17,10 @@ class Pack extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'subname' => $this->subname,
             'description' => $this->description,
             'price' => $this->price,
+            'image_cuadrado'  => $this->image_cuadrado,
             'image_vertical'  => $this->image_vertical,
             'image_horizontal'  => $this->image_horizontal,
             'price_offer' => $this->price_offer,

@@ -11,8 +11,18 @@
             </a>
 
         </div>
-
         
+        <div style="
+    background: #343a40;
+    padding: 20px;
+    text-align: center;
+    color: white;
+">
+            <div style="width: 75%; margin: auto;">
+                <h2>"{{ data.subname }}"</h2>
+                <p>{{ data.description }}</p>
+            </div>
+        </div>
 
         <slot></slot>
 

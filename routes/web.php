@@ -27,6 +27,10 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //Rutas Para Usuarios Autenticados
 Route::group(['middleware' => 'auth'], function () {
 
+  //!Borrar
+  Route::get('/test/{pack_id}','SemanaController@semanasClases');
+  //!Borrar
+
   //Página de clase en especifico
   Route::get('/my-workout/{name}/tag/{id}', 'ClaseController@showView');
 
@@ -69,6 +73,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         //Clase
         Route::get('/edit-clase/{clase_name}/etiqueta/{clase_id}','ClaseController@edit');
+
+        
 
         //Entrenador
         Route::get('/show-entrenador','EntrenadorController@list');

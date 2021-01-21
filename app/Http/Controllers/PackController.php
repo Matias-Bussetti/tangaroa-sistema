@@ -58,10 +58,15 @@ class PackController extends Controller
       // * Mensajes del Validador
       $messages = [
       'name.required' => 'Ingrese un Nombre',
+      'subname.required' => 'Ingrese un Nombre',
       'description.required' => 'Escriba un descripción',
       'price.required' => 'Ingrese un Precio',
       'price.numeric' => 'El Precio debe de ser numerico',
       'type.required' => 'Elige el tipo del paquete',
+      'image_cuadrado.required' => 'Elija una Imagen',
+      'image_cuadrado.file' => 'Elija una Imagen que sea un archivo',
+      'image_cuadrado.max' => 'Elija una Imagen que menor de 20 mb',
+      'image_cuadrado.mimes' => 'Elija una Imagen con la extención: jpeg o png',
       'image_vertical.required' => 'Elija una Imagen',
       'image_vertical.file' => 'Elija una Imagen que sea un archivo',
       'image_vertical.max' => 'Elija una Imagen que menor de 20 mb',
@@ -75,9 +80,11 @@ class PackController extends Controller
       // * Reglas del validador
       $validator = Validator::make($request->all(), [
       'name' => 'required',
+      'subname' => 'required',
       'description' => 'required',
       'price' => 'required|numeric',
       'type' => 'required',
+      'image_cuadrado' => 'required|file|max:20000|mimes:jpeg,png',
       'image_vertical' => 'required|file|max:20000|mimes:jpeg,png',
       'image_horizontal' => 'required|file|max:20000|mimes:jpeg,png',
       ], $messages);
@@ -90,6 +97,13 @@ class PackController extends Controller
         return ['data' => ['errors' => $errors]];
       }
 
+      if (request()->hasFile('image_cuadrado'))//---> Valida que la imagen sea un archivo
+      {
+        $file = $request->file('image_cuadrado');//---> asignamos a $file el valor de lo que traemos del request como imagen
+        $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
+        $file_name_cuadrado = time()."-".$request->input('name')."-cuadrado.".$extension;//---> armamos el nombre del archivo
+        Storage::disk('pack')->put($file_name_cuadrado, file_get_contents($file));//---> guardamos el archivo en el storage
+      }
       if (request()->hasFile('image_vertical'))//---> Valida que la imagen sea un archivo
       {
         $file = $request->file('image_vertical');//---> asignamos a $file el valor de lo que traemos del request como imagen
@@ -97,7 +111,6 @@ class PackController extends Controller
         $file_name_vertical = time()."-".$request->input('name')."-vertical.".$extension;//---> armamos el nombre del archivo
         Storage::disk('pack')->put($file_name_vertical, file_get_contents($file));//---> guardamos el archivo en el storage
       }
-
       if (request()->hasFile('image_horizontal'))//---> Valida que la imagen sea un archivo
       {
         $file = $request->file('image_horizontal');//---> asignamos a $file el valor de lo que traemos del request como imagen
@@ -111,10 +124,12 @@ class PackController extends Controller
       $pack = new Pack;
 
       $pack->name = $request->input('name');
+      $pack->subname = $request->input('subname');
       $pack->description = $request->input('description');
       $pack->position = $request->input('position');
       $pack->price = $request->input('price');
       $pack->type = $request->input('type');
+      $pack->image_cuadrado = strval("/img/pack/".$file_name_cuadrado);
       $pack->image_vertical = strval("/img/pack/".$file_name_vertical);
       $pack->image_horizontal = strval("/img/pack/".$file_name_horizontal);
 
@@ -187,6 +202,7 @@ class PackController extends Controller
       // * mensajes del validador 
       $messages = [
       'name.required' => 'Ingrese un Nombre',
+      'subname.required' => 'Ingrese un SubNombre',
       'description.required' => 'Escriba un descripción',
       'price.required' => 'Ingrese un Precio',
       'price.numeric' => 'El Precio debe de ser numerico',
@@ -195,6 +211,10 @@ class PackController extends Controller
       'price_offer.lt' => 'El Precio de oferta debe de ser menor al Precio sin oferta',
       'price_offer.gt' => 'El Precio de oferta debe de ser mayor de 0',
       'date_offer.after' => 'La fecha de la oferta tiene que ser mayor a hoy',
+      'image_cuadrado.required' => 'Elija una Imagen',
+      'image_cuadrado.file' => 'Elija una Imagen que sea un archivo',
+      'image_cuadrado.max' => 'Elija una Imagen que menor de 20 mb',
+      'image_cuadrado.mimes' => 'Elija una Imagen con la extención: jpeg o png',
       'image_vertical.file' => 'Elija una Imagen que sea un archivo',
       'image_vertical.max' => 'Elija una Imagen que menor de 20 mb',
       'image_vertical.mimes' => 'Elija una Imagen con la extención: jpeg o png',
@@ -207,10 +227,12 @@ class PackController extends Controller
       
       $validator = Validator::make($request->all(), [
       'name' => 'required',
+      'subname' => 'required',
       'description' => 'required',
       'price' => 'required|numeric|gt:0',
       'price_offer' => 'numeric|lt:price|gt:0',
       'date_offer' => 'after:today',
+      'image_cuadrado' => 'required|file|max:20000|mimes:jpeg,png',
       'image_vertical' => 'file|max:20000|mimes:jpeg,png',
       'image_horizontal' => 'file|max:20000|mimes:jpeg,png',
       ], $messages);
@@ -229,6 +251,14 @@ class PackController extends Controller
 
       $pack = Pack::findOrFail($id);
 
+      if (request()->hasFile('image_cuadrado'))//---> Valida que la imagen sea un archivo
+      {
+        $file = $request->file('image_cuadrado');//---> asignamos a $file el valor de lo que traemos del request como imagen
+        $extension = $file->getClientOriginalExtension();//---> asigmanos a $extension la extencion del archivo
+        $file_name_cuadrado = str_replace("/img/pack/","",$pack->image_cuadrado);
+        Storage::disk('pack')->put($file_name_cuadrado, file_get_contents($file));//---> guardamos el archivo en el storage
+      }
+
       if (request()->hasFile('image_vertical'))//---> Valida que la imagen sea un archivo
       {
         $file = $request->file('image_vertical');//---> asignamos a $file el valor de lo que traemos del request como imagen
@@ -246,6 +276,7 @@ class PackController extends Controller
       }
 
       $pack->name = $request->input('name');
+      $pack->subname = $request->input('subname');
       $pack->description = $request->input('description');
       $pack->position = $request->input('position');
       $pack->price = $request->input('price');

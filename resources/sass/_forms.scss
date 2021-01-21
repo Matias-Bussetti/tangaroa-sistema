@@ -4,6 +4,10 @@ $custom-file-text: (en: "Browse",
     es: "Elegir"
 );
 
+.form-title{
+    font-family: sans-serif;
+}
+
 form {
     .form-div {
         display: flex;
@@ -11,6 +15,8 @@ form {
 
         label {
             width: 15%;
+            color: rgb(31, 31, 31);
+            text-shadow: 1px 1px 0px rgb(241, 241, 241);
         }
 
         .input {

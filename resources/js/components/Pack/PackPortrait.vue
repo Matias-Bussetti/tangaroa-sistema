@@ -7,11 +7,11 @@
             <div class="title-container">
                 <h4>{{data.name}}</h4>
             </div>
-
+            <!--
             <div class="link-container">
                 <i class="fas fa-dumbbell"></i>
             </div>
-
+            -->
         </a>
    
     </div>

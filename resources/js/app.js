@@ -21,16 +21,18 @@ window.Vue = require('vue');
 
 Vue.component('Packs', require('./components/Pack/Packs.vue').default);
 Vue.component('Pack', require('./components/Pack/Pack.vue').default);
-Vue.component('Packbanner', require('./components/Pack/PackBanner.vue').default);
 Vue.component('Addpack', require('./components/Pack/AddPack.vue').default);
 Vue.component('Editpack', require('./components/Pack/EditPack.vue').default);
 
+Vue.component('Packbox', require('./components/Pack/PackBox.vue').default);
+Vue.component('Packbanner', require('./components/Pack/PackBanner.vue').default);
 Vue.component('Packportrait', require('./components/Pack/PackPortrait.vue').default);
 Vue.component('Packsale', require('./components/Pack/PackSale.vue').default);
 
 Vue.component('Packsemanas', require('./components/Semana/PackSemanas.vue').default);
 Vue.component('Semana', require('./components/Semana/Semana.vue').default);
 Vue.component('Semanabanner', require('./components/Semana/SemanaBanner.vue').default);
+Vue.component('Progreso', require('./components/Semana/Progreso.vue').default);
 
 Vue.component('Clasesmallbox', require('./components/Clase/ClaseSmallBox.vue').default);
 Vue.component('Editclase', require('./components/Clase/EditClase.vue').default);

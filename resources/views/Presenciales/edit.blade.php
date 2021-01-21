@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="full-height container" style="margin-top: 10px;margin-bottom:40px;height: 75vh;"> <!-- ANCHOR - Cambiar inline-style -->
+  <div class="full-height container">
 
       @php
        $pack = App\Models\Presencial::find($id)->get();

@@ -2,7 +2,7 @@
     <div>
         <div>
 
-            <h3>Agregar Clase Presencial:</h3>
+            <h3 class="form-title">Editar Clase Presencial:</h3>
 
             <form @submit.prevent="editPresencial" class="col s12 mb-2">
 
@@ -141,7 +141,12 @@
         },
         created() {
             this.fetchPresencial()
-            this.fetchLink()
+            console.log("creado");
+        },
+
+        mounted() {
+            //this.fetchLink()
+            console.log("montado");
         },
 
         methods: {
@@ -154,20 +159,37 @@
                     }
                 }).then(res => res.json()).then(res => {
 
+
                     this.presencial = res.data;
+                    console.log(this.presencial);
 
                     var weekday = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"]
                     this.presencial.fecha = weekday[new Date(this.presencial.fecha).getDay()]
 
-                    console.log(res.data);
+
+                   
 
                 }).catch(err => console.log(err));
+
+                 await fetch(`/api/presencial/link/${this.presencial.id}`, {
+                        headers: {
+                            "Authorization": `Bearer ${this.token}`,
+                        },
+                        method: 'GET',
+                    }).then(res => res.json()).then(res => {
+
+                        this.$set(this.presencial, 'link', res.data)
+                        console.log(this.presencial);
+
+                        
+                    }).catch(err => console.log(err));
+
 
             },
 
             async fetchLink() {
 
-                fetch(`/api/presencial/link/${this.presencial.id}`, {
+                await fetch(`/api/presencial/link/${this.id}`, {
                     headers: {
                         "Authorization": `Bearer ${this.token}`,
                     },
@@ -175,7 +197,8 @@
                 }).then(res => res.json()).then(res => {
 
                     this.presencial.link = res.data;
-
+                    console.log(this.presencial.link);
+                    
                 }).catch(err => console.log(err));
 
             },

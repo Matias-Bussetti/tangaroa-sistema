@@ -2,6 +2,8 @@
 
 .entrenador-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     padding: 10px 5%;
     //justify-content: center;
 
@@ -9,6 +11,10 @@
         display: inline-table;
         width: 300px;
         margin: 0 20px;
+
+        img{
+            border-radius: 50%;
+        }
 
         .title-div {
             text-align: center;
@@ -30,7 +36,8 @@
 
 @media (max-width: 1300px) {
     .entrenador-container {
-        width: 1000px;
+        //width: 1000px;
+        
         margin: auto;
 
     }

@@ -16,6 +16,13 @@
         <div class="presenciales-container-container">
             <div class="presenciales-container">
                 <Presencialbox v-for="presencial in presenciales" v-bind:key="presencial.id" :data="presencial" :admin="admin"></Presencialbox>
+                
+                <div class="presenciales-box">
+                    <a :href="`/admin/settings/create-presencial/${this.pack.id}`" class="add-icon">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            
             </div>
         </div>
         

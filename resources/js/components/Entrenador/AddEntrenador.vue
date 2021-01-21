@@ -2,7 +2,7 @@
     <div>
         <div>
 
-            <h3>Agregar Entrenador:</h3>
+            <h3 class="form-title">Agregar Entrenador:</h3>
 
             <form @submit.prevent="addEntrenador" class="col s12 mb-2">
 

@@ -37,13 +37,14 @@
         text-align: center;
     }
 
-    a{
+    a {
         position: absolute;
         color: $colorA;
         max-width: 300px;
         min-width: 300px;
         max-height: 800px;
         min-height: 800px;
+
         &:hover {
             color: $colorAH;
         }
@@ -61,27 +62,33 @@
     padding: 0;
     height: 180px;
     width: 100%;
-    background-repeat: no-repeat; background-position: center center; background-size: 100% 100%;
-    .title-container{
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+
+    .title-container {
         width: 100%;
         top: 40%;
         position: absolute;
         text-align: center;
-        text-shadow: 1px 1px 2px black; 
+        text-shadow: 1px 1px 2px black;
         color: white;
         font-family: 'Open Sans', sans-serif;
     }
-    .edit-icon{
+
+    .edit-icon {
         position: absolute;
         top: 10%;
         right: 10%;
         color: $colorA;
-        i{
+
+        i {
             border: 1px solid $colorA;
             border-radius: 75px;
             padding: 10px;
         }
-        &:hover{
+
+        &:hover {
             color: $colorAH;
             border: $colorAH;
             border-radius: 75px;
@@ -89,8 +96,126 @@
     }
 }
 
+.comodin {
+    display: none;
+}
+
+.container-box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    background-color: black;
+
+
+
+    .box {
+        color: white;
+        text-shadow: 1px 1px 2px black;
+        position: relative;
+        flex-grow: 1;
+        flex-shrink: 0;
+        filter: brightness(0.3);
+        border: 3px solid black;
+        transition: 0.5s;
+        text-align: center;
+
+        .container-name {
+            width: 100%;
+            position: absolute;
+            top: 8%;
+
+            h2 {
+                font-family: 'Hind', sans-serif;
+                text-transform: uppercase;
+            }
+        }
+
+        .container-subname {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+
+            h4 {
+                font-family: 'Kanit', sans-serif;
+                font-style: italic;
+            }
+        }
+
+
+        .img {
+            width: 100%;
+            filter: saturate(1.5) brightness(0.5) contrast(1.1);
+        }
+
+        //height: 800px;
+        //width: 800px;
+        &:hover {
+            filter: brightness(1);
+        }
+    }
+
+    .comodin {
+        &:hover {
+            filter: brightness(0.3);
+        }
+    }
+
+}
+
 @media (max-width: 1600px) {
     .banner {
         background-size: 1600px 100%;
     }
 }
+
+/*
+@media (min-width: 1920px) {
+    .box {
+        flex-basis: 25%;
+    }
+}
+*/
+@media (min-width: 1600px) {
+    .box {
+        flex-basis: 33.333333333333333%;
+        //flex-basis: 25%;
+    }
+
+    .container-box .box .container-name h2{
+        font-size: 2vw;
+    }
+
+    .container-box .box .container-subname h4{
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 1600px) {
+    .box {
+        flex-basis: 50%;
+    }
+
+    .container-box .box .container-name h2{
+        font-size: 3vw;
+    }
+
+    .container-box .box .container-subname h4{
+        font-size: 3vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .box {
+        flex-basis: 100%;
+    }
+
+    .container-box .box .container-name h2{
+        font-size: 6vw;
+    }
+
+    .container-box .box .container-subname h4{
+        font-size: 6vw;
+    }
+
+}
+

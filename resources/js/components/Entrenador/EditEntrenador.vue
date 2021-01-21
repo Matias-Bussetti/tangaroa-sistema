@@ -2,7 +2,7 @@
     <div>
         <div>
 
-            <h3>Agregar Paquete:</h3>
+            <h3 class="form-title">Agregar Paquete:</h3>
 
             <form @submit.prevent="editEntrenador" class="col s12 mb-2">
 

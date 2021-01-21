@@ -11,8 +11,17 @@
 }
 
 #body {
-    background-color: rgba(0, 0, 0, 0.062);
+    //background-color: rgba(0, 0, 0, 0.062);
+    background-color: $background_color;
+
 }
+
+#main {
+    //calcula la altura minima que tiene que tener el man con el nav y el footer
+    min-height: calc(100vh - (#{$nav_height} + #{$footer_height}));
+    padding: 0 0 20px 0;
+}
+
 
 #navbar {
     background-image: url('/img/page/navbar-background.jpg');
@@ -29,7 +38,7 @@
     }
 }
 
-.user-title{
+.user-title {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
 }

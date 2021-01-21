@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="full-height container" style="margin-top: 10px;margin-bottom:40px;">
+<div class="full-height container">
 
     @php
         $isAdmin = Auth::user()->isAdmin ? "true" : "false";

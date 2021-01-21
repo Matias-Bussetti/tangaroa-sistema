@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="full-height container" style="margin-top: 10px;margin-bottom:40px;"> <!-- ANCHOR - Cambiar inline-style -->
+  <div class="full-height container mt-4">
 
       @php
           $pack = App\Models\Pack::findorFail($id);

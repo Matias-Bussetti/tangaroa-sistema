@@ -16,12 +16,14 @@ class CreatePacksTable extends Migration
         Schema::create('packs', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
+            $table->string('subname');
             $table->text('description');
             $table->smallInteger('position')->nullable();
             $table->tinyInteger('type');
             $table->double('price', 8, 2);
             $table->double('price_offer', 8, 2)->nullable();
             $table->date('date_offer')->nullable();
+            $table->text('image_cuadrado');
             $table->text('image_vertical');
             $table->text('image_horizontal');
             $table->timestamps();

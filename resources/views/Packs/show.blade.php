@@ -12,7 +12,7 @@
     });
     $clase_done = $clase_done->toArray();
 @endphp
-<div style="height: 80vh">
+<div>
 
 @if ($isAdmin == "true")
     <a class="back-icon" href="/admin/settings/"><i class="fas fa-arrow-left"></i></a>
@@ -21,37 +21,38 @@
 @endif
 
 @switch($pack->type)
-@case(0)
+    @case(0)
+    <Packbanner :data="{{json_encode($pack) }}" :admin="{{$isAdmin}}">
+        
+        {{-- <Progreso :id="{{$pack->id}}" :user-id="{{ Auth::user()->id }}" :token="{{ json_encode(Auth::user()->api_token) }}"></Progreso> --}}
+        
+            @foreach ($pack->semanas as $semana)
 
-<Packbanner :data="{{json_encode($pack) }}" :admin="{{$isAdmin}}">
+            <Semanabanner :data="{{json_encode($semana) }}" :token="{{ json_encode(Auth::user()->api_token) }}"
+                :count="{{count($semana->clases)}}" :admin="{{$isAdmin}}">
 
-    @foreach ($pack->semanas as $semana)
+                @foreach ($semana->clases as $clase)
 
-    <Semanabanner :data="{{json_encode($semana) }}" :token="{{ json_encode(Auth::user()->api_token) }}"
-        :count="{{count($semana->clases)}}" :admin="{{$isAdmin}}">
+                {{-- <a class="nodecoration" style="text-decoration:none;" href="'/my-workout/' + {{$clase->name}} + '/tag/' +
+                {{$clase->id}}"> --}}
 
-        @foreach ($semana->clases as $clase)
+                <Clasesmallbox :data="{{json_encode($clase) }}"
+                    :done="{{ in_array(strval($clase->id),$clase_done) ? "true" : "false"}}" :admin="{{$isAdmin}}"
+                    :index="{{ $loop->index + 1 }}"></Clasesmallbox>
 
-        {{-- <a class="nodecoration" style="text-decoration:none;" href="'/my-workout/' + {{$clase->name}} + '/tag/' +
-        {{$clase->id}}"> --}}
+                {{-- </a> --}}
 
-        <Clasesmallbox :data="{{json_encode($clase) }}"
-            :done="{{ in_array(strval($clase->id),$clase_done) ? "true" : "false"}}" :admin="{{$isAdmin}}"
-            :index="{{ $loop->index + 1 }}"></Clasesmallbox>
+                @endforeach
 
-        {{-- </a> --}}
+            </Semanabanner>
 
-        @endforeach
+            @endforeach
 
-    </Semanabanner>
+        </Packbanner>
 
-    @endforeach
+    @break
 
-</Packbanner>
-
-@break
-
-@case(1)
+    @case(1)
 
         <PresencialContainer :pack="{{ json_encode($pack) }}" :token="{{ json_encode(Auth::user()->api_token) }}" :admin="{{$isAdmin}}" />
 

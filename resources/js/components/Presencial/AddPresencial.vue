@@ -2,7 +2,7 @@
     <div>
         <div>
 
-            <h3>Agregar Clase Presencial:</h3>
+            <h3 class="form-title">Agregar Clase Presencial:</h3>
 
             <form @submit.prevent="addPresencial" class="col s12 mb-2">
 
@@ -95,7 +95,7 @@
                     </li>
                 </ul>
 
-                <button type="submit" class="submit-button">Agregar Paquete</button>
+                <button type="submit" class="submit-button">Agregar Nuevo Horario</button>
 
             </form>
         </div>

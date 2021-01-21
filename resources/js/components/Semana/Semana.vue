@@ -1,11 +1,16 @@
 <template>
+
     <div>
+
         <div class="row align-middle" :style="{ 'background-color': semana.color }">
-            <h4 class="col-11" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
+
+            <h4 class="col-11 title" :style="{ 'display': (!edit ? 'unset' : 'none') }">{{semana.name}}</h4>
             <input :id="(semana.name + '-inputText')" type="text" class="col-11 input-text" v-model="semana.name" :style="{ 'display': (edit ? 'unset' : 'none') }">
             <input :id="(semana.name + '-inputColor')" type="color" class="input-color"  v-model="semana.color" :style="{ 'display': (edit ? 'unset' : 'none') }">
             <i id="editIcon" style="margin: auto;" class="fa " :class="[edit ? 'fa-save': 'fa-pencil']" aria-hidden="true" @click="editSemana"></i>
+
         </div>
+
         <div class="row">
             
             <div class="col-1 m-auto" v-for="clase in clases" v-bind:key="clase.id">

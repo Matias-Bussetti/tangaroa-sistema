@@ -166,4 +166,5 @@ class ClaseController extends Controller
         return new PackResource($clase->group->pack);
 
     }
+
 }

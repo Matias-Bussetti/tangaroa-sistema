@@ -7,6 +7,7 @@
         <div class="row align-middle" style="backgroung-color: #f0e9c9" @click="addSemana">
             <i style="margin: auto;" class="fa fa-plus" aria-hidden="true"></i>
         </div>
+        
     </div>
 </template>
 

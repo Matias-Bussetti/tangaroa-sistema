@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Semana as SemanaResource;
 use App\Models\Pack;
 use App\Models\Semana;
+use App\Models\User_Clase;
 
 class SemanaController extends Controller
 {
@@ -106,5 +109,57 @@ class SemanaController extends Controller
       }
 
     }
-}
+
+
+    public function semanasClases($pack_id, $user_id){
+
+      $pack = Pack::findorFail($pack_id);
+
+      $array = new Collection;
+      $array_semanas = new Collection;
+
+      $clase_done = User_Clase::select('clase_id')->where('user_id',$user_id)->where('pack_id',$pack->id)->get()->map(
+        function ($item, $key) {
+          return $item->clase_id;
+        });
+    
+        
+      $clase_done = $clase_done->toArray();
+        
+      $counter = 0;
+
+      foreach ($pack->semanas as $semana) {
+        $counter += count( $semana->clases );
+      }
+
+      $array->push(["progreso" => round(count($clase_done) / $counter * 100 )]);
+      
+
+      foreach ($pack->semanas as $semana) {
+
+        $clases = $semana->clases;
+        
+        $array_semanas->push([
+          "semana" => [
+            "id" => $semana->id,
+            "name" => $semana->name,
+            "color" => $semana->color,
+            "clases" => $clases->map(function ($item, $key) use ($clase_done){
+                return [
+                  'id' => $item->id, 
+                  'name' => $item->name, 
+                  'done' => in_array(strval($item->id),$clase_done) ? "true" : "false", 
+                ];
+              })
+          ]
+        ]);
+
+      }
+
+    $array->push(["semanas" => $array_semanas]);
+
+    return ["data" => $array];
+
+    }
+  }
 

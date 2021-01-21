@@ -3,7 +3,7 @@
         <div>
 
 
-            <h3>Editar Clase:</h3>
+            <h3 class="form-title">Editar Clase:</h3>
 
             <form @submit.prevent="editClase" class="col s12 mb-2">
 

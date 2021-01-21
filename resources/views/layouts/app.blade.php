@@ -12,27 +12,33 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/textFit.js" defer></script>
+    <script src="{{ asset('js/function.js') }}" defer></script>
+    
 
     <!-- Fonts -->
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@500&family=Open+Sans:ital@1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap" rel="stylesheet">
+
     <!-- Icons -->
     {{-- <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css"> --}}
-    <script src="https://kit.fontawesome.com/1cc693f93f.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1cc693f93f.js" crossorigin="anonymous"></script> 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 
 </head>
 
 <body id="body">
     <div id="app">
+
         <nav id="navbar" class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -98,86 +104,84 @@
             </div>
         </nav>
 
-
-
-        <main class="">
+        <main id="main">
             
             <div id="app">
 
                 @auth
 
-                @if (strpos( substr(Request::url(), 7) , '/'))
+                    @if (strpos( substr(Request::url(), 7) , '/'))
 
-                @if (Auth::user()->isAdmin)
+                        @if (Auth::user()->isAdmin)
 
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-                    <div class="container">
-                        <a class="navbar-brand" href="/admin/settings">Administrador</a>
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                            <div class="container">
+                                <a class="navbar-brand" href="/admin/settings">Administrador</a>
 
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
 
-                        <div class="collapse navbar-collapse" id="navbarText">
+                                <div class="collapse navbar-collapse" id="navbarText">
 
-                            <ul class="navbar-nav mr-auto">
-                                <li
-                                    class="nav-item dropdown {{ !(strpos( Request::url() , 'edit-entrenador') || strpos( Request::url() , 'show-entrenador') || strpos( Request::url() , 'create-entrenador') || strpos( Request::url() , 'edit-entrenador')) ? 'active' : ''}}">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li
+                                            class="nav-item dropdown {{ !(strpos( Request::url() , 'edit-entrenador') || strpos( Request::url() , 'show-entrenador') || strpos( Request::url() , 'create-entrenador') || strpos( Request::url() , 'edit-entrenador')) ? 'active' : ''}}">
 
-                                    <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Paquetes
-                                    </a>
+                                            <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Paquetes
+                                            </a>
 
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                        <a class="dropdown-item" href="{{url('/admin/settings/create-pack')}}">Crear
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/admin/settings">Lista</a>
+                                                <a class="dropdown-item" href="{{url('/admin/settings/create-pack')}}">Crear
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/admin/settings">Lista</a>
 
-                                    </div>
+                                            </div>
 
-                                </li>
+                                        </li>
 
-                                <li
-                                    class="nav-item dropdown {{ strpos( Request::url() , 'edit-entrenador') || strpos( Request::url() , 'show-entrenador') || strpos( Request::url() , 'create-entrenador') || strpos( Request::url() , 'edit-entrenador') ? 'active' : ''}}">
+                                        <li
+                                            class="nav-item dropdown {{ strpos( Request::url() , 'edit-entrenador') || strpos( Request::url() , 'show-entrenador') || strpos( Request::url() , 'create-entrenador') || strpos( Request::url() , 'edit-entrenador') ? 'active' : ''}}">
 
-                                    <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Entrenadores
-                                    </a>
+                                            <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Entrenadores
+                                            </a>
 
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                        <a class="dropdown-item"
-                                            href="{{url('/admin/settings/create-entrenador')}}">Agregar</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/admin/settings/show-entrenador">Lista</a>
+                                                <a class="dropdown-item"
+                                                    href="{{url('/admin/settings/create-entrenador')}}">Agregar</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/admin/settings/show-entrenador">Lista</a>
 
-                                    </div>
+                                            </div>
 
-                                </li>
+                                        </li>
 
-                            </ul>
+                                    </ul>
 
-                        </div>
+                                </div>
 
-                    </div>
+                            </div>
 
-                </nav>
+                        </nav>
 
-                @endif
+                        @endif
 
-                @endif
+                    @endif
 
                 @endauth
-
 
                 @yield('content')
 
             </div>
+
         </main>
 
         <!--<div class="pre-footer"></div>-->
@@ -186,6 +190,7 @@
             <img src="/img/page/tangaroa logo.png" alt="Tangaroa Logo">
             <p>Copyright © 2020 Tangaroa Entrenamiento</p>
         </footer>
+    
     </div>
 </body>
 

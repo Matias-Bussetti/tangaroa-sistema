@@ -54,6 +54,8 @@ Route::put('semana/{id}','SemanaController@update');
 //Delete Semana
 Route::delete('semana/{id}','SemanaController@destroy');
 
+//Progreso del usuario
+Route::get('/progreso/{pack_id}/{user_id}','SemanaController@semanasClases');
 
 //List one Clase
 Route::get('clases/{id}','ClaseController@index');

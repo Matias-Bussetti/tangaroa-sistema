@@ -191,10 +191,10 @@ class PresencialController extends Controller
         $start = Carbon::createFromFormat('Y-m-d H:i:s',$presencial->fecha . " " . $presencial->hora_inicio);
         $finish = Carbon::createFromFormat('Y-m-d H:i:s',$presencial->fecha . " " . $presencial->hora_fin);
 
-        if (Carbon::now()->between($start, $finish)) {
+        /*if (Carbon::now()->between($start, $finish)) {*/
             return ["data" => $presencial->link];
-        } else {
+        /*} else {
             abort(404);
-        }
+        }*/
     }
 }
